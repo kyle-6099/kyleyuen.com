@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Kyle Yuen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}</style>
+</head>
+<body class="text-slate-300 antialiased">
+<canvas id="bg"></canvas>
+<div class="content">
+<nav class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-slate-400 hover:text-brand-400 transition-colors">Work</a>
+    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
+    <a href="/about" class="text-brand-400 font-medium">About</a>
+    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+  </div>
+</nav>
+
+<section class="max-w-4xl mx-auto px-6 pt-12 pb-20">
+  <h1 class="text-3xl font-bold mb-8 text-white">About</h1>
+
+  <div class="space-y-12">
+    <!-- Bio -->
+    <div class="space-y-4 text-slate-400 leading-relaxed max-w-2xl">
+      <p>I'm a CPHR candidate and operations leader who's spent over a decade navigating the messy intersection of HR, payroll, workforce systems, and office operations. I've been the person called in when a workforce system rollout was going off the rails, when a multi-jurisdiction compliance audit uncovered gaps nobody wanted to talk about, and when a team needed someone who could bridge the gap between what the business needs and what the systems can actually deliver.</p>
+      <p>I've worked across multi-entity, multi-jurisdiction environments covering HR, general office administration, and basic IT support. I've led full-cycle payroll implementations, handled employee relations from performance management to terminations, and built compliance frameworks that hold up under audit. I've worked in safety-sensitive industries and cross-border operations where the regulatory landscape shifts at the border.</p>
+      <p>What sets me apart isn't just the HR knowledge — it's that I bring the technical literacy to evaluate what's possible. I don't just identify inefficiencies; I can decompose them into atomic tasks, recommend the right automation approach, and work with technical teams to bring it to life. Most operations professionals can tell you what's broken. I can tell you what's broken, why it matters, and what the fix should look like — with the technical literacy to ensure it's actually feasible.</p>
+    </div>
+
+    <!-- Experience highlights -->
+    <div>
+      <h2 class="text-xl font-bold mb-6 text-white">What I've handled</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">HR Operations at Scale</h3>
+          <p class="text-sm text-slate-400">Managed the full employee lifecycle — recruitment, onboarding, performance management, investigations, and terminations — across multiple legal entities and jurisdictions.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Payroll & Workforce Systems</h3>
+          <p class="text-sm text-slate-400">Led end-to-end payroll system implementations across multi-entity environments. Built payroll logic that handles multi-jurisdiction overtime, statutory holidays, and cross-border pay rules.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Employee Relations</h3>
+          <p class="text-sm text-slate-400">Handled complex ER cases including investigations, progressive discipline, performance improvement plans, and terminations — in both non-unionized and organized-workplace environments.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Regulatory Compliance</h3>
+          <p class="text-sm text-slate-400">Built and maintained compliance frameworks across provincial and federal jurisdictions. Managed audits, policy development, and statutory reporting across safety-sensitive industries.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Cross-Border Operations</h3>
+          <p class="text-sm text-slate-400">Navigated the regulatory complexity of cross-border workforce management — where employment standards, hours-of-service rules, and payroll obligations shift depending on jurisdiction.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Office Administration & IT Support</h3>
+          <p class="text-sm text-slate-400">Managed the day-to-day operational backbone: general office administration, vendor coordination, onboarding logistics, and first-level IT support so teams can stay productive.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Gap-to-Solution Delivery</h3>
+          <p class="text-sm text-slate-400">Identified operational blind spots and resolved them with the right mix of process, tooling, and automation — often finding niche solutions that address very specific business needs.</p>
+        </div>
+        <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+          <h3 class="font-semibold text-white mb-2">Crisis & Change Management</h3>
+          <p class="text-sm text-slate-400">Led HR and operations through restructuring, workforce reductions, policy overhauls, and system migrations. The kind of situations where there's no playbook and you have to build one in real time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stack & Domains -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="mono text-xs text-brand-400 mb-3">Technical stack</h3>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">ai-agents</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">workflow-automation</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">hris</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">office365</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">microsoft-teams</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">adp-wfn</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">it-support</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">api-integration</span>
+        </div>
+      </div>
+      <div>
+        <h3 class="mono text-xs text-brand-400 mb-3">Domains</h3>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">hr-operations</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">payroll</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">employee-relations</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">compliance</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">transportation</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">maritime</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">logistics</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">telecom</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">health-insurance</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">travel-tourism</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">cross-border</span>
+          <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">safety-sensitive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+      <a href="#" class="hover:text-brand-400 transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
+function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
+class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
+function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
+for(let i=0;i<80;i++)p.push(new P());
+function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
+</script>
+</body>
+</html>

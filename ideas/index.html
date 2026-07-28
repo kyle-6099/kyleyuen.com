@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideas — Kyle Yuen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}</style>
+</head>
+<body class="text-slate-300 antialiased">
+<canvas id="bg"></canvas>
+<div class="content">
+<nav class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-slate-400 hover:text-brand-400 transition-colors">Work</a>
+    <a href="/ideas" class="text-brand-400 font-medium">Ideas</a>
+    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
+    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+  </div>
+</nav>
+<section class="max-w-4xl mx-auto px-6 pt-12 pb-20">
+  <div class="mb-12">
+    <h1 class="text-3xl font-bold mb-2 text-white">Ideas</h1>
+    <p class="text-slate-500">Newsletter-style notes on work, systems, and where AI meets operations.</p>
+  </div>
+
+  <!-- Newsletter subscribe placeholder -->
+  <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-6 mb-12">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h3 class="font-semibold text-white mb-1">Get new ideas in your inbox</h3>
+        <p class="text-sm text-slate-400">Occasional notes on decomposing work, building useful systems, and the future of operations.</p>
+      </div>
+      <div class="flex gap-2">
+        <input type="email" placeholder="you@example.com" class="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-500/50 w-64" disabled>
+        <button class="bg-brand-500/10 border border-brand-500/30 text-brand-400 px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed opacity-60" disabled>Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-sm text-slate-500 mb-8">Each post starts with my own notes and experience. AI helps with the draft. I edit before it goes live.</p>
+
+  <div class="space-y-6">
+    <a href="/ideas/stop-people-being-messengers.html" class="block rounded-xl border border-slate-800 bg-slate-900/50 p-6 hover:border-brand-500/30 hover:bg-slate-900/80 transition-all group">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="mono text-xs text-brand-400">Issue 002</span>
+        <span class="mono text-xs text-slate-600">4 min read</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1 text-white group-hover:text-brand-400 transition-colors">Stop People From Being Messengers</h3>
+      <p class="text-slate-400 text-sm">The real foundation of automation is not speed. It is removing unnecessary human-to-human information transport.</p>
+    </a>
+
+    <a href="/ideas/most-jobs-are-legacy-code.html" class="block rounded-xl border border-slate-800 bg-slate-900/50 p-6 hover:border-brand-500/30 hover:bg-slate-900/80 transition-all group">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="mono text-xs text-brand-400">Issue 001</span>
+        <span class="mono text-xs text-slate-600">4 min read</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1 text-white group-hover:text-brand-400 transition-colors">Most Jobs Are Just Legacy Code</h3>
+      <p class="text-slate-400 text-sm">Why companies skip the redesign and go straight to automation — and why that usually fails.</p>
+    </a>
+  </div>
+</section>
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+      <a href="#" class="hover:text-brand-400 transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
+function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
+class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
+function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
+for(let i=0;i<80;i++)p.push(new P());
+function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
+</script>
+</body>
+</html>

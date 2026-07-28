@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900" style="background:#0a0a0b;font-family:Inter,system-ui,sans-serif;">
+  <defs>
+    <marker id="arr" markerWidth="12" markerHeight="12" refX="11" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-ok" markerWidth="12" markerHeight="12" refX="11" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#10b981"/>
+    </marker>
+    <marker id="arr-err" markerWidth="12" markerHeight="12" refX="11" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#f87171"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="48" text-anchor="middle" font-size="26" font-weight="800" fill="#f8fafc">Trigger-Based Finance Onboarding</text>
+  <text x="700" y="82" text-anchor="middle" font-size="16" fill="#94a3b8">What happens when employee data is complete — and when it is missing.</text>
+
+  <!-- Main flow container -->
+  <rect x="40" y="120" width="1320" height="680" rx="12" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Swimlane labels (left side) -->
+  <rect x="40" y="120" width="180" height="680" rx="12" fill="#1e293b" opacity="0.5"/>
+  
+  <text x="130" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">Employee</text>
+  <text x="130" y="300" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">HRIS</text>
+  <text x="130" y="440" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">Accounting Manager</text>
+  <text x="130" y="560" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">IT Automation</text>
+  <text x="130" y="680" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">Notifications</text>
+
+  <!-- Lane dividers -->
+  <line x1="220" y1="220" x2="1360" y2="220" stroke="#334155" stroke-width="1"/>
+  <line x1="220" y1="340" x2="1360" y2="340" stroke="#334155" stroke-width="1"/>
+  <line x1="220" y1="500" x2="1360" y2="500" stroke="#334155" stroke-width="1"/>
+  <line x1="220" y1="620" x2="1360" y2="620" stroke="#334155" stroke-width="1"/>
+
+  <!-- === HAPPY PATH === -->
+  
+  <!-- Start -->
+  <circle cx="300" cy="170" r="24" fill="#0f172a" stroke="#60a5fa" stroke-width="3"/>
+  <text x="300" y="176" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">Start</text>
+  <line x1="300" y1="194" x2="300" y2="226" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Employee: new hire starts -->
+  <rect x="235" y="230" width="130" height="72" rx="8" fill="#3b82f6" opacity="0.18" stroke="#60a5fa" stroke-width="2"/>
+  <text x="300" y="252" text-anchor="middle" font-size="13" font-weight="700" fill="#bfdbfe">[HUMAN] 🧑</text>
+  <text x="300" y="275" text-anchor="middle" font-size="12" fill="#e0f2fe">New hire</text>
+  <text x="300" y="292" text-anchor="middle" font-size="12" fill="#e0f2fe">starts</text>
+  <line x1="300" y1="302" x2="300" y2="338" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- HRIS: create record -->
+  <rect x="235" y="352" width="130" height="72" rx="8" fill="#22c55e" opacity="0.18" stroke="#4ade80" stroke-width="2"/>
+  <text x="300" y="374" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">[AUTO] ⚙️</text>
+  <text x="300" y="397" text-anchor="middle" font-size="12" fill="#dcfce7">Create employee</text>
+  <text x="300" y="414" text-anchor="middle" font-size="12" fill="#dcfce7">record in HRIS</text>
+  <line x1="300" y1="424" x2="300" y2="446" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Decision: data complete? -->
+  <polygon points="300,470 340,505 300,540 260,505" fill="#0f172a" stroke="#fbbf24" stroke-width="3"/>
+  <text x="300" y="495" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">Required</text>
+  <text x="300" y="510" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">data</text>
+  <text x="300" y="525" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">complete?</text>
+
+  <!-- Yes branch -->
+  <path d="M340 505 L440 505" stroke="#10b981" stroke-width="3" marker-end="url(#arr-ok)"/>
+  <text x="390" y="498" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Yes</text>
+
+  <!-- Accounting Manager: set access rules -->
+  <rect x="450" y="470" width="160" height="70" rx="8" fill="#f59e0b" opacity="0.18" stroke="#fbbf24" stroke-width="2"/>
+  <text x="530" y="493" text-anchor="middle" font-size="13" font-weight="700" fill="#fef3c7">[HYBRID] 🔀</text>
+  <text x="530" y="516" text-anchor="middle" font-size="12" fill="#fef3c7">Set entity access</text>
+  <text x="530" y="533" text-anchor="middle" font-size="12" fill="#fef3c7">rules &amp; levels</text>
+  <line x1="610" y1="505" x2="650" y2="505" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Decision: rules valid? -->
+  <polygon points="690,505 730,540 690,575 650,540" fill="#0f172a" stroke="#fbbf24" stroke-width="3"/>
+  <text x="690" y="530" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">Access</text>
+  <text x="690" y="545" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">rules</text>
+  <text x="690" y="560" text-anchor="middle" font-size="11" font-weight="700" fill="#fde68a">valid?</text>
+
+  <!-- Yes branch -->
+  <path d="M730 540 L780 540" stroke="#10b981" stroke-width="3" marker-end="url(#arr-ok)"/>
+  <text x="755" y="533" text-anchor="middle" font-size="13" font-weight="700" fill="#34d399">Yes</text>
+
+  <!-- IT Automation: create accounts -->
+  <rect x="790" y="505" width="160" height="70" rx="8" fill="#22c55e" opacity="0.18" stroke="#4ade80" stroke-width="2"/>
+  <text x="870" y="528" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">[AUTO] ⚙️</text>
+  <text x="870" y="551" text-anchor="middle" font-size="12" fill="#dcfce7">Create accounts &amp;</text>
+  <text x="870" y="568" text-anchor="middle" font-size="12" fill="#dcfce7">apply rules</text>
+  <line x1="870" y1="575" x2="870" y2="608" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Data store: Accounting system -->
+  <path d="M790 625 C790 610, 950 610, 950 625 L950 670 C950 685, 790 685, 790 670 Z" fill="#0f172a" stroke="#4ade80" stroke-width="3"/>
+  <path d="M790 625 C790 640, 950 640, 950 625" fill="none" stroke="#4ade80" stroke-width="3"/>
+  <text x="870" y="647" text-anchor="middle" font-size="14" font-weight="700" fill="#86efac">Accounting</text>
+  <text x="870" y="665" text-anchor="middle" font-size="12" fill="#bbf7d0">system</text>
+
+  <!-- Branch to notifications -->
+  <path d="M950 647 L990 647 L990 680" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)" fill="none"/>
+
+  <!-- Manager notification -->
+  <rect x="1000" y="650" width="150" height="60" rx="8" fill="#3b82f6" opacity="0.18" stroke="#60a5fa" stroke-width="2"/>
+  <text x="1075" y="672" text-anchor="middle" font-size="13" font-weight="700" fill="#bfdbfe">[HUMAN] 🧑</text>
+  <text x="1075" y="695" text-anchor="middle" font-size="12" fill="#e0f2fe">Manager notified</text>
+  <line x1="1075" y1="710" x2="1075" y2="742" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Auto notification -->
+  <rect x="1190" y="650" width="150" height="60" rx="8" fill="#22c55e" opacity="0.18" stroke="#4ade80" stroke-width="2"/>
+  <text x="1265" y="672" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">[AUTO] ⚙️</text>
+  <text x="1265" y="695" text-anchor="middle" font-size="12" fill="#dcfce7">Employee notified</text>
+  <line x1="1265" y1="710" x2="1265" y2="742" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- End events -->
+  <circle cx="1075" cy="760" r="24" fill="#0f172a" stroke="#60a5fa" stroke-width="3"/>
+  <circle cx="1075" cy="760" r="16" fill="none" stroke="#60a5fa" stroke-width="2"/>
+  <text x="1075" y="766" text-anchor="middle" font-size="12" font-weight="600" fill="#93c5fd">End</text>
+
+  <circle cx="1265" cy="760" r="24" fill="#0f172a" stroke="#4ade80" stroke-width="3"/>
+  <circle cx="1265" cy="760" r="16" fill="none" stroke="#4ade80" stroke-width="2"/>
+  <text x="1265" y="766" text-anchor="middle" font-size="12" font-weight="600" fill="#86efac">End</text>
+
+  <!-- === EXCEPTION PATHS === -->
+
+  <!-- No: data incomplete -->
+  <path d="M300 540 L300 620 L420 620" stroke="#f87171" stroke-width="3" marker-end="url(#arr-err)" stroke-dasharray="6"/>
+  <text x="350" y="612" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">No</text>
+
+  <!-- Request missing info -->
+  <rect x="430" y="590" width="180" height="60" rx="8" fill="#f59e0b" opacity="0.18" stroke="#fbbf24" stroke-width="2"/>
+  <text x="520" y="612" text-anchor="middle" font-size="13" font-weight="700" fill="#fef3c7">[HYBRID] 🔀</text>
+  <text x="520" y="635" text-anchor="middle" font-size="12" fill="#fef3c7">Request missing info</text>
+  <path d="M610 620 L690 620 L690 570" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr)" fill="none"/>
+  <text x="650" y="612" text-anchor="middle" font-size="11" fill="#94a3b8">manager provides</text>
+
+  <!-- No: rules invalid -->
+  <path d="M650 540 L620 540 L620 440 L450 440" stroke="#f87171" stroke-width="3" marker-end="url(#arr-err)" stroke-dasharray="6"/>
+  <text x="570" y="432" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">No</text>
+
+  <!-- === Legend === -->
+  <rect x="40" y="820" width="1320" height="70" rx="12" fill="#1e293b" opacity="0.5" stroke="#334155"/>
+  <text x="70" y="848" font-size="16" font-weight="800" fill="#e2e8f0">Legend</text>
+
+  <rect x="140" y="830" width="120" height="50" rx="6" fill="#3b82f6" opacity="0.18" stroke="#60a5fa" stroke-width="2"/>
+  <text x="200" y="850" text-anchor="middle" font-size="13" font-weight="700" fill="#bfdbfe">[HUMAN] 🧑</text>
+  <text x="200" y="870" text-anchor="middle" font-size="11" fill="#94a3b8">judgment / accountability</text>
+
+  <rect x="280" y="830" width="120" height="50" rx="6" fill="#22c55e" opacity="0.18" stroke="#4ade80" stroke-width="2"/>
+  <text x="340" y="850" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">[AUTO] ⚙️</text>
+  <text x="340" y="870" text-anchor="middle" font-size="11" fill="#94a3b8">deterministic automation</text>
+
+  <rect x="420" y="830" width="120" height="50" rx="6" fill="#f59e0b" opacity="0.18" stroke="#fbbf24" stroke-width="2"/>
+  <text x="480" y="850" text-anchor="middle" font-size="13" font-weight="700" fill="#fef3c7">[HYBRID] 🔀</text>
+  <text x="480" y="870" text-anchor="middle" font-size="11" fill="#94a3b8">system drafts, human approves</text>
+
+  <polygon points="620,845 645,870 620,895 595,870" fill="#0f172a" stroke="#fbbf24" stroke-width="2"/>
+  <text x="620" y="875" text-anchor="middle" font-size="12" fill="#fde68a">decision</text>
+
+  <path d="M680 840 C680 830, 760 830, 760 840 L760 870 C760 880, 680 880, 680 870 Z" fill="#0f172a" stroke="#4ade80" stroke-width="2"/>
+  <text x="720" y="865" text-anchor="middle" font-size="12" fill="#86efac">data store</text>
+
+  <text x="830" y="850" font-size="13" fill="#e2e8f0">Solid green arrow = happy path</text>
+  <text x="830" y="872" font-size="13" fill="#fca5a5">Dashed red arrow = exception / correction loop</text>
+  <text x="830" y="894" font-size="13" fill="#94a3b8">Gray arrow = information or trigger flow</text>
+
+  <!-- Key principle callout -->
+  <rect x="1080" y="820" width="280" height="70" rx="12" fill="#0f172a" stroke="#f87171" stroke-width="2"/>
+  <text x="1220" y="848" text-anchor="middle" font-size="14" font-weight="800" fill="#fca5a5">Key principle</text>
+  <text x="1220" y="870" text-anchor="middle" font-size="12" fill="#fca5a5">If someone only carries data</text>
+  <text x="1220" y="890" text-anchor="middle" font-size="12" fill="#fca5a5">they don't control, replace them.</text>
+</svg>

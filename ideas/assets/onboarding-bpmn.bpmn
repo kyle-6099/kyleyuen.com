@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Hermes Agent" exporterVersion="1.0">
+  
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Onboarding" name="Finance Onboarding" processRef="Process_Onboarding" />
+  </bpmn:collaboration>
+
+  <bpmn:process id="Process_Onboarding" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Employee" name="Employee">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_HRIS" name="HRIS">
+        <bpmn:flowNodeRef>Task_Record_HRIS</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_Data_Complete</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Accounting" name="Accounting Manager">
+        <bpmn:flowNodeRef>Task_Set_Access</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_Rules_Valid</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Request_Missing</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Correct_Rules</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT" name="IT Automation">
+        <bpmn:flowNodeRef>Task_Create_Accounts</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Notify_Employee</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Manager" name="Manager">
+        <bpmn:flowNodeRef>Task_Notify_Manager</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+
+    <!-- Employee lane -->
+    <bpmn:startEvent id="StartEvent_1" name="Employee starts">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+
+    <!-- HRIS lane -->
+    <bpmn:serviceTask id="Task_Record_HRIS" name="Create employee record">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway id="Gateway_Data_Complete" name="Data complete?">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3_Yes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_3_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <!-- Accounting Manager lane -->
+    <bpmn:userTask id="Task_Set_Access" name="Set access rules">
+      <bpmn:incoming>Flow_3_Yes</bpmn:incoming>
+      <bpmn:incoming>Flow_Missing_Back</bpmn:incoming>
+      <bpmn:incoming>Flow_Invalid_Back</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:exclusiveGateway id="Gateway_Rules_Valid" name="Rules valid?">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5_Yes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_5_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:userTask id="Task_Request_Missing" name="Provide missing info">
+      <bpmn:incoming>Flow_3_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_Missing_Back</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:userTask id="Task_Correct_Rules" name="Correct rules">
+      <bpmn:incoming>Flow_5_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_Invalid_Back</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <!-- IT Automation lane -->
+    <bpmn:serviceTask id="Task_Create_Accounts" name="Create accounts">
+      <bpmn:incoming>Flow_5_Yes</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_6b</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataAssoc_1" targetRef="DataStore_Accounting" />
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask id="Task_Notify_Employee" name="Notify employee">
+      <bpmn:incoming>Flow_6b</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:dataStoreReference id="DataStore_Accounting" name="Accounting system" />
+
+    <!-- Manager lane -->
+    <bpmn:userTask id="Task_Notify_Manager" name="Notify manager">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <!-- End events -->
+    <bpmn:endEvent id="EndEvent_Manager" name="Access ready">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:endEvent id="EndEvent_Employee" name="Access ready">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- Sequence flows -->
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_Record_HRIS" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_Record_HRIS" targetRef="Gateway_Data_Complete" />
+    <bpmn:sequenceFlow id="Flow_3_Yes" name="Yes" sourceRef="Gateway_Data_Complete" targetRef="Task_Set_Access" />
+    <bpmn:sequenceFlow id="Flow_3_No" name="No" sourceRef="Gateway_Data_Complete" targetRef="Task_Request_Missing" />
+    <bpmn:sequenceFlow id="Flow_Missing_Back" sourceRef="Task_Request_Missing" targetRef="Task_Set_Access" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Set_Access" targetRef="Gateway_Rules_Valid" />
+    <bpmn:sequenceFlow id="Flow_5_Yes" name="Yes" sourceRef="Gateway_Rules_Valid" targetRef="Task_Create_Accounts" />
+    <bpmn:sequenceFlow id="Flow_5_No" name="No" sourceRef="Gateway_Rules_Valid" targetRef="Task_Correct_Rules" />
+    <bpmn:sequenceFlow id="Flow_Invalid_Back" sourceRef="Task_Correct_Rules" targetRef="Task_Set_Access" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_Create_Accounts" targetRef="Task_Notify_Manager" />
+    <bpmn:sequenceFlow id="Flow_6b" sourceRef="Task_Create_Accounts" targetRef="Task_Notify_Employee" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_Notify_Manager" targetRef="EndEvent_Manager" />
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_Notify_Employee" targetRef="EndEvent_Employee" />
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Onboarding_di" bpmnElement="Participant_Onboarding" isHorizontal="true">
+        <omgdc:Bounds x="100" y="60" width="1400" height="650" />
+      </bpmndi:BPMNShape>
+
+      <!-- Lanes -->
+      <bpmndi:BPMNShape id="Lane_Employee_di" bpmnElement="Lane_Employee" isHorizontal="true">
+        <omgdc:Bounds x="130" y="60" width="1370" height="100" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_HRIS_di" bpmnElement="Lane_HRIS" isHorizontal="true">
+        <omgdc:Bounds x="130" y="160" width="1370" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Accounting_di" bpmnElement="Lane_Accounting" isHorizontal="true">
+        <omgdc:Bounds x="130" y="290" width="1370" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT_di" bpmnElement="Lane_IT" isHorizontal="true">
+        <omgdc:Bounds x="130" y="450" width="1370" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Manager_di" bpmnElement="Lane_Manager" isHorizontal="true">
+        <omgdc:Bounds x="130" y="580" width="1370" height="130" />
+      </bpmndi:BPMNShape>
+
+      <!-- Shapes -->
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <omgdc:Bounds x="190" y="92" width="36" height="36" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Record_HRIS_di" bpmnElement="Task_Record_HRIS">
+        <omgdc:Bounds x="300" y="195" width="150" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Gateway_Data_Complete_di" bpmnElement="Gateway_Data_Complete" isMarkerVisible="true">
+        <omgdc:Bounds x="520" y="205" width="50" height="50" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Set_Access_di" bpmnElement="Task_Set_Access">
+        <omgdc:Bounds x="680" y="340" width="150" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Gateway_Rules_Valid_di" bpmnElement="Gateway_Rules_Valid" isMarkerVisible="true">
+        <omgdc:Bounds x="900" y="345" width="50" height="50" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Create_Accounts_di" bpmnElement="Task_Create_Accounts">
+        <omgdc:Bounds x="1050" y="485" width="150" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Notify_Manager_di" bpmnElement="Task_Notify_Manager">
+        <omgdc:Bounds x="1270" y="615" width="130" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Notify_Employee_di" bpmnElement="Task_Notify_Employee">
+        <omgdc:Bounds x="1270" y="485" width="130" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="EndEvent_Manager_di" bpmnElement="EndEvent_Manager">
+        <omgdc:Bounds x="1450" y="627" width="36" height="36" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="EndEvent_Employee_di" bpmnElement="EndEvent_Employee">
+        <omgdc:Bounds x="1450" y="497" width="36" height="36" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Request_Missing_di" bpmnElement="Task_Request_Missing">
+        <omgdc:Bounds x="520" y="390" width="150" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_Correct_Rules_di" bpmnElement="Task_Correct_Rules">
+        <omgdc:Bounds x="900" y="390" width="130" height="60" />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="DataStore_Accounting_di" bpmnElement="DataStore_Accounting">
+        <omgdc:Bounds x="1070" y="690" width="70" height="90" />
+      </bpmndi:BPMNShape>
+
+      <!-- Edges -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <omgdi:waypoint x="226" y="110" />
+        <omgdi:waypoint x="300" y="225" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <omgdi:waypoint x="450" y="225" />
+        <omgdi:waypoint x="520" y="225" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_3_Yes_di" bpmnElement="Flow_3_Yes">
+        <omgdi:waypoint x="545" y="255" />
+        <omgdi:waypoint x="545" y="370" />
+        <omgdi:waypoint x="680" y="370" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_3_No_di" bpmnElement="Flow_3_No">
+        <omgdi:waypoint x="545" y="255" />
+        <omgdi:waypoint x="545" y="390" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Missing_Back_di" bpmnElement="Flow_Missing_Back">
+        <omgdi:waypoint x="595" y="390" />
+        <omgdi:waypoint x="595" y="420" />
+        <omgdi:waypoint x="755" y="420" />
+        <omgdi:waypoint x="755" y="400" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <omgdi:waypoint x="830" y="370" />
+        <omgdi:waypoint x="900" y="370" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_5_Yes_di" bpmnElement="Flow_5_Yes">
+        <omgdi:waypoint x="950" y="370" />
+        <omgdi:waypoint x="1050" y="515" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_5_No_di" bpmnElement="Flow_5_No">
+        <omgdi:waypoint x="925" y="345" />
+        <omgdi:waypoint x="925" y="390" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Invalid_Back_di" bpmnElement="Flow_Invalid_Back">
+        <omgdi:waypoint x="900" y="390" />
+        <omgdi:waypoint x="830" y="390" />
+        <omgdi:waypoint x="830" y="420" />
+        <omgdi:waypoint x="755" y="420" />
+        <omgdi:waypoint x="755" y="400" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <omgdi:waypoint x="1200" y="515" />
+        <omgdi:waypoint x="1270" y="645" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_6b_di" bpmnElement="Flow_6b">
+        <omgdi:waypoint x="1200" y="515" />
+        <omgdi:waypoint x="1270" y="515" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <omgdi:waypoint x="1400" y="645" />
+        <omgdi:waypoint x="1450" y="645" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8">
+        <omgdi:waypoint x="1400" y="515" />
+        <omgdi:waypoint x="1450" y="515" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="DataAssoc_1_di" bpmnElement="DataAssoc_1">
+        <omgdi:waypoint x="1125" y="545" />
+        <omgdi:waypoint x="1125" y="690" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

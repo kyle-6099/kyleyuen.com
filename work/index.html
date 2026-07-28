@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Kyle Yuen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}.work-card{transition:all .2s ease}.work-card.hidden-card{display:none}</style>
+</head>
+<body class="text-slate-300 antialiased">
+<canvas id="bg"></canvas>
+<div class="content">
+<nav class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-brand-400 font-medium">Work</a>
+    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
+    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
+    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+  </div>
+</nav>
+
+<section class="max-w-4xl mx-auto px-6 pt-12 pb-20">
+  <h1 class="text-3xl font-bold mb-2 text-white">Work</h1>
+  <p class="text-slate-500 mb-8">Projects where I identified the real gap and resolved it with the right solution.</p>
+
+  <!-- Filter bar -->
+  <div class="mb-10">
+    <p class="text-xs text-slate-500 mb-3 mono">Filter by category</p>
+    <div id="filter-bar" class="flex flex-wrap gap-2">
+      <button data-filter="all" class="filter-btn mono text-xs bg-brand-500/10 border border-brand-500/30 text-brand-400 px-3 py-1.5 rounded hover:bg-brand-500/20 transition-all active">All</button>
+      <button data-filter="microsoft-teams" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">microsoft-teams</button>
+      <button data-filter="ucaa" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">ucaa</button>
+      <button data-filter="mobile-integration" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">mobile-integration</button>
+      <button data-filter="it-strategy" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">it-strategy</button>
+      <button data-filter="ai-agents" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">ai-agents</button>
+      <button data-filter="workflow-automation" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">workflow-automation</button>
+      <button data-filter="hris-integration" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">hris-integration</button>
+      <button data-filter="role-design" class="filter-btn mono text-xs bg-slate-800 border border-slate-700 text-slate-400 px-3 py-1.5 rounded hover:border-slate-500 hover:text-slate-300 transition-all">role-design</button>
+    </div>
+  </div>
+
+  <div id="work-list" class="space-y-6">
+    <!-- Pinned: Role Zero -->
+    <a href="/work/role-zero/" data-tags="role-design human-ai-collaboration workflow-decomposition ai-agents" class="work-card block rounded-xl border border-brand-500/30 bg-slate-900/80 p-6 md:p-8 hover:border-brand-400/50 transition-all group">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Pinned</span>
+        <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Role Zero</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-400 transition-colors">Atomic Role Decomposition for AI-Powered Operations</h3>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        Role Zero is a framework for breaking work down into its smallest useful units — tasks, workflows, and decisions — and reassembling them so humans and AI each handle what they do best. The goal is to redesign roles around collaboration rather than replacement, then optimize the result for the specific business situation.
+      </p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        I am starting with the HR Generalist role as the first test case: mapping the day-to-day work, separating judgment from repetitive execution, and designing how AI agents handle the routine while the human owns decisions, relationships, and exceptions.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">ai-agents</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">role-design</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">workflow-decomposition</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">human-ai-collaboration</span>
+      </div>
+    </a>
+
+    <!-- Teams Phone Mobile -->
+    <a href="/work/teams-phone-mobile/" data-tags="microsoft-teams ucaa mobile-integration it-strategy" class="work-card block rounded-xl border border-slate-800 bg-slate-900/50 p-6 md:p-8 hover:border-brand-500/30 hover:bg-slate-900/80 transition-all group">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Work</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-400 transition-colors">Microsoft Teams Phone + Mobile — Replacing a Broken Calling Stack</h3>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        A company using Microsoft Teams for office calls could not reach its field staff reliably. Call queue calls rang through the Teams app, but field staff missed them in areas with poor internet. Office staff ended up manually forwarding calls to separate mobile numbers, and missed-call voicemails were locked in one person's mailbox.
+      </p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        I rolled out Teams Phone Mobile so field staff could answer queue calls from their native mobile dialer, with one work number across Teams and mobile.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">microsoft-teams</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">ucaa</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">mobile-integration</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">it-strategy</span>
+      </div>
+    </a>
+
+    <!-- Multi-Agent HR Hub -->
+    <a href="/work/multi-agent-hr-hub/" data-tags="ai-agents workflow-automation pii-governance hris-integration" class="work-card block rounded-xl border border-slate-800 bg-slate-900/50 p-6 md:p-8 hover:border-brand-500/30 hover:bg-slate-900/80 transition-all group">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Work</span>
+        <span class="mono text-xs text-slate-600">2025–2026</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-400 transition-colors">Multi-Agent HR Hub-and-Spoke</h3>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        I built a live prototype using Hermes Agent in which a central HR hub decomposes requests and routes work to specialist agents for compliance, payroll, legal, and document templates. The hub then synthesizes the specialist outputs into a coherent, deliverable result.
+      </p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        The system currently supports document generation, version history, compliance monitoring, and PII-aware routing. The most complex part was the routing logic: ensuring each request lands in the right specialist context without allowing sensitive information to leak across agents.
+      </p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-4 max-w-2xl">
+        The longer-term vision is HRIS-agnostic integration through APIs, allowing HR teams to interact with their systems in natural language instead of navigating a different, complex interface for every platform.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">ai-agents</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">workflow-automation</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">pii-governance</span>
+        <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">hris-integration</span>
+      </div>
+    </a>
+  </div>
+
+  <p id="no-results" class="hidden text-slate-500 text-sm mt-8">No projects match this filter.</p>
+</section>
+
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+      <a href="#" class="hover:text-brand-400 transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.work-card');
+const noResults = document.getElementById('no-results');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+
+    filterBtns.forEach(b => {
+      b.classList.remove('bg-brand-500/10', 'border-brand-500/30', 'text-brand-400');
+      b.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-400');
+    });
+    btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-400');
+    btn.classList.add('bg-brand-500/10', 'border-brand-500/30', 'text-brand-400');
+
+    let visible = 0;
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      if (filter === 'all' || tags.split(' ').includes(filter)) {
+        card.classList.remove('hidden-card');
+        visible++;
+      } else {
+        card.classList.add('hidden-card');
+      }
+    });
+
+    noResults.classList.toggle('hidden', visible > 0);
+  });
+});
+</script>
+<script>
+const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
+function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
+class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
+function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
+for(let i=0;i<80;i++)p.push(new P());
+function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
+</script>
+</body>
+</html>

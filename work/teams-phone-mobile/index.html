@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Teams Phone + Mobile — Kyle Yuen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}.prose p{margin-bottom:1.25em;line-height:1.75;color:#94a3b8}.prose h2{color:#fff;font-weight:700;font-size:1.25rem;margin-top:2em;margin-bottom:0.75em}.prose ul{list-style-type:disc;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose li{margin-bottom:0.5em}.prose strong{color:#e2e8f0}.prose ol{list-style-type:decimal;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose ol li{margin-bottom:0.75em}</style>
+</head>
+<body class="text-slate-300 antialiased">
+<canvas id="bg"></canvas>
+<div class="content">
+<nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-brand-400 font-medium">Work</a>
+    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
+    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
+    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-12 pb-20">
+  <header class="mb-10">
+    <div class="flex flex-wrap items-center gap-3 mb-3">
+      <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Work</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Microsoft Teams Phone + Mobile</h1>
+    <p class="text-slate-500 text-sm">Replacing a broken calling stack with auto attendants, call queues, and native-mobile Teams calling.</p>
+  </header>
+
+  <div class="prose">
+    <h2>The gap</h2>
+    <p>A company had moved office calling to Microsoft Teams with auto attendant and call queues. But the system stopped at the desk.</p>
+
+    <p>When a customer called the office, the Teams call queue rang everyone — office staff on Teams, and field staff through the Teams app on their mobile phones. Field staff mostly missed those calls because they worked in areas with limited or unreliable internet. So office staff fell back to manually forwarding calls to each field person's separate mobile number, keeping a list of personal workarounds at their desk.</p>
+
+    <p>When calls did go to voicemail, they landed in one employee's mailbox and were not visible to the rest of the team. The workflow was fragmented, calls were missed, and follow-up depended on one person checking their own voicemail.</p>
+
+    <h2>The solution</h2>
+    <p>I led a company-wide rollout of Microsoft Teams Phone, with Teams Phone Mobile for anyone using a company mobile phone — mainly field staff.</p>
+
+    <p>Teams Phone Mobile gave each user one work number that worked in the Teams app and on the native mobile dialer. Field staff could answer queue calls straight from their phone's regular call screen, without relying on the Teams app or a data connection. That let them participate in call queue coverage the same way office staff did.</p>
+
+    <p>The call queue could also route voicemails to a shared mailbox, so missed calls became visible to the team instead of being locked in one person's mailbox.</p>
+
+    <p>At the time, Rogers was the only Canadian carrier offering this integration. Today, two carriers support it in Canada.</p>
+
+    <h2>My role</h2>
+    <p>I handled this end to end: researching the solution when it was still new, designing the rollout, configuring the platform, coordinating with the carrier, training users, and managing the cutover.</p>
+
+    <h2>Outcome</h2>
+    <ul>
+      <li>Field staff can reliably answer Teams call queue calls without internet.</li>
+      <li>One work number per user across Teams app and mobile.</li>
+      <li>Less manual forwarding from office staff to individual mobile numbers.</li>
+      <li>Missed-call voicemails go to a shared mailbox, not an individual one.</li>
+      <li>Better call coverage across office and field teams.</li>
+    </ul>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-slate-800">
+    <p class="text-sm text-slate-500 mb-4">Tags:</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">microsoft-teams</span>
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">ucaa</span>
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">mobile-integration</span>
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">it-strategy</span>
+    </div>
+  </div>
+
+  <footer class="mt-16 pt-8 border-t border-slate-800">
+    <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-500 transition-colors">
+      ← Back to Work
+    </a>
+  </footer>
+</article>
+
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
+function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
+class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
+function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
+for(let i=0;i<80;i++)p.push(new P());
+function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
+</script>
+</body>
+</html>

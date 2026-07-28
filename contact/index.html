@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Kyle Yuen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}</style>
+</head>
+<body class="text-slate-300 antialiased">
+<canvas id="bg"></canvas>
+<div class="content">
+<nav class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-slate-400 hover:text-brand-400 transition-colors">Work</a>
+    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
+    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
+    <a href="/contact" class="text-brand-400 font-medium">Contact</a>
+  </div>
+</nav>
+<section class="max-w-4xl mx-auto px-6 pt-12 pb-20">
+  <div class="rounded-xl border border-brand-500/20 bg-brand-500/5 p-8 md:p-12 text-center">
+    <h1 class="text-3xl font-bold mb-4 text-white">Let's work together</h1>
+    <p class="text-slate-400 mb-8 max-w-lg mx-auto leading-relaxed">
+      I'm open to consulting, speaking, and collaboration on operations automation and AI agent pipeline projects. If you've been told your workflow is "too complex to automate," I'd love to hear about it.
+    </p>
+    <a href="mailto:kyle@kyleyuen.com" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-500/10 border border-brand-500/30 text-brand-400 font-medium rounded-lg hover:bg-brand-500/20 transition-all mono text-sm">
+      kyle@kyleyuen.com
+    </a>
+  </div>
+</section>
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+      <a href="#" class="hover:text-brand-400 transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
+function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
+class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
+function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
+for(let i=0;i<80;i++)p.push(new P());
+function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
+</script>
+</body>
+</html>

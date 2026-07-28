@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atomic Role Decomposition — Kyle Yuen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}.prose p{margin-bottom:1.25em;line-height:1.75;color:#94a3b8}.prose h2{color:#fff;font-weight:700;font-size:1.25rem;margin-top:2em;margin-bottom:0.75em}.prose ul{list-style-type:disc;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose li{margin-bottom:0.5em}.prose strong{color:#e2e8f0}</style>
+</head>
+<body class="text-slate-300 antialiased">
+<canvas id="bg"></canvas>
+<div class="content">
+<nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-brand-400 font-medium">Work</a>
+    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
+    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
+    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-12 pb-20">
+  <header class="mb-10">
+    <div class="flex flex-wrap items-center gap-3 mb-3">
+      <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Pinned</span>
+      <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Role Zero</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Atomic Role Decomposition for AI-Powered Operations</h1>
+    <p class="text-slate-500 text-sm">A methodology for redesigning roles around human-AI collaboration.</p>
+  </header>
+
+  <div class="prose">
+    <h2>Overview</h2>
+    <p>Role Zero is a framework for breaking work down into its smallest useful units — tasks, workflows, and decisions — and reassembling them so humans and AI each handle what they do best. The goal is to redesign roles around collaboration rather than replacement.</p>
+
+    <h2>The problem with current automation thinking</h2>
+    <p>Most organizations skip the redesign step and go straight to automation. They ask "How do we make this faster?" instead of "Does this process still make sense?" The result is faster versions of broken workflows, not better ones.</p>
+
+    <h2>The methodology</h2>
+    <ul>
+      <li><strong>Discovery:</strong> Define the role, context, scope, and pain points.</li>
+      <li><strong>Decomposition:</strong> Break the role into atomic work units, each small enough that ownership is unambiguous.</li>
+      <li><strong>Mapping:</strong> Assign each unit to human, automation, AI agent, or hybrid ownership.</li>
+      <li><strong>Validation:</strong> Check coverage, handoffs, and risk.</li>
+      <li><strong>Output:</strong> Produce a reusable blueprint and implementation plan.</li>
+    </ul>
+
+    <h2>Current test case: HR Generalist</h2>
+    <p>I am starting with the HR Generalist role: mapping the day-to-day work, separating judgment from repetitive execution, and designing how AI agents handle the routine while the human owns decisions, relationships, and exceptions.</p>
+
+    <h2>Why this matters</h2>
+    <p>The organizations that get ahead will not be the ones with the most AI tools. They will be the ones that looked honestly at how work is structured and redesigned it for the technology that already exists.</p>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-slate-800">
+    <p class="text-sm text-slate-500 mb-4">Tags:</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">ai-agents</span>
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">role-design</span>
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">workflow-decomposition</span>
+      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">human-ai-collaboration</span>
+    </div>
+  </div>
+
+  <footer class="mt-16 pt-8 border-t border-slate-800">
+    <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-500 transition-colors">
+      ← Back to Work
+    </a>
+  </footer>
+</article>
+
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
+function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
+class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
+function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
+for(let i=0;i<80;i++)p.push(new P());
+function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
+</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyle Yuen — Resources Management</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { 400: '#34d399', 500: '#10b981', 600: '#059669' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  body { font-family: 'Inter', sans-serif; background: #0a0a0b; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  canvas { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+  .content { position: relative; z-index: 1; }
+</style>
+</head>
+<body class="text-slate-300 antialiased">
+
+<canvas id="bg"></canvas>
+
+<div class="content">
+<nav class="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
+  <div class="flex items-center gap-8 text-sm">
+    <a href="/work" class="text-slate-400 hover:text-brand-400 transition-colors">Work</a>
+    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
+    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
+    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="max-w-4xl mx-auto px-6 pt-24 pb-16">
+  <p class="mono text-brand-400 text-sm mb-4">Resources Management Expert</p>
+  <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-white">
+    I find the gaps<br>
+    <span class="text-brand-400">and I map the path forward.</span>
+  </h1>
+  <p class="text-lg text-slate-400 max-w-2xl leading-relaxed mb-10">
+    Most organizations have gaps they can't see because they're looking through a single lens — HR sees people problems, IT sees tool problems, operations sees process problems. I look at the entire resource stack: people, tools, systems, and AI agents. I identify where the real bottlenecks are, and I recommend the right solution — with the technical literacy to evaluate what's actually feasible.
+  </p>
+  <div class="flex flex-wrap gap-4">
+    <a href="/work" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500/10 border border-brand-500/30 text-brand-400 font-medium rounded-lg hover:bg-brand-500/20 transition-all">
+      See my work
+    </a>
+    <a href="/contact" class="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-700 text-slate-400 font-medium rounded-lg hover:border-slate-500 hover:text-slate-300 transition-all">
+      Get in touch
+    </a>
+  </div>
+</section>
+
+<!-- What I'm good at -->
+<section class="max-w-4xl mx-auto px-6 pb-20">
+  <h2 class="text-2xl font-bold mb-8 text-white">What I'm good at</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
+      <div class="text-brand-400 text-2xl mb-3">🔍</div>
+      <h3 class="font-semibold text-white mb-2">Gap Diagnosis</h3>
+      <p class="text-sm text-slate-400 leading-relaxed">I look at your entire operation — people, tools, systems, processes — and identify where the real bottlenecks are. Not the symptoms. The root cause. Whether it's a human gap, a tool gap, or a system gap, I find it.</p>
+    </div>
+    <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
+      <div class="text-brand-400 text-2xl mb-3">⚙️</div>
+      <h3 class="font-semibold text-white mb-2">Solution Design</h3>
+      <p class="text-sm text-slate-400 leading-relaxed">I translate business needs into actionable recommendations — whether that's a new process, a workforce system configuration, a compliance framework, or an AI automation opportunity. I bring the technical literacy to evaluate what's feasible, and I work with technical teams to bring it to life.</p>
+    </div>
+    <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
+      <div class="text-brand-400 text-2xl mb-3">🤖</div>
+      <h3 class="font-semibold text-white mb-2">Automation Architecture</h3>
+      <p class="text-sm text-slate-400 leading-relaxed">I decompose roles into atomic tasks, route the automatable ones to AI agents, and build pipelines that handle the routine. Your people focus on judgment and strategy — the system handles everything else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- What I bring -->
+<section class="border-t border-slate-800 pt-20 pb-20">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-2xl font-bold mb-8 text-white">What I bring to the table</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex gap-4">
+        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-brand-400 text-sm font-bold">1</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-1">Deep operational experience</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">I've worked across multi-entity, multi-jurisdiction environments, handling HR, general office administration, and basic IT support. I know how organizations actually run day-to-day — not just how they look on paper.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-brand-400 text-sm font-bold">2</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-1">Multi-jurisdiction expertise</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">I've built and maintained compliance across provincial, federal, and cross-border environments. Employment standards, hours-of-service rules, payroll obligations, statutory reporting — I know what changes across jurisdictions and what doesn't.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-brand-400 text-sm font-bold">3</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-1">Gap-to-solution thinking</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">I don't just spot problems — I identify the real gap and resolve it with the right resources or solution. That could be a process change, a tool swap, an integration, or an AI workflow. I match the fix to the actual need.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-brand-400 text-sm font-bold">4</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-1">Technology-informed strategy</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">I don't just identify what's broken — I recommend the right fix. Workflow automation, AI-agent pipelines, system integrations, full-stack applications. I bring the technical literacy to evaluate what's feasible, bridge the gap between business and technical teams, and ensure the solution actually solves the problem.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-brand-400 text-sm font-bold">5</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-1">Industry versatility</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Transportation, maritime, logistics, telecom, health insurance, travel and tourism — in Canada and internationally. I adapt fast because I understand the underlying operational patterns, not just the surface-level industry jargon.</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-brand-400 text-sm font-bold">6</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-1">CPHR-track credibility</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Pursuing the CPHR designation — the recognized standard for HR professionals in Canada. Combined with hands-on implementation experience, this means I bring both the theoretical framework and the practical know-how.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The gap types I solve -->
+<section class="border-t border-slate-800 pt-20 pb-20">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-2xl font-bold mb-3 text-white">The gaps I solve</h2>
+    <p class="text-slate-500 mb-8">Every organization has them. Most don't know where to look.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5 text-center">
+        <div class="text-3xl mb-3">👥</div>
+        <h3 class="font-semibold text-white mb-1">Human Gaps</h3>
+        <p class="text-xs text-slate-400">Missing skills, unclear roles, compliance risks, ER issues, workforce planning gaps</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5 text-center">
+        <div class="text-3xl mb-3">🔧</div>
+        <h3 class="font-semibold text-white mb-1">Tool Gaps</h3>
+        <p class="text-xs text-slate-400">Wrong systems, missing integrations, manual workflows that should be automated, outdated tech</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5 text-center">
+        <div class="text-3xl mb-3">🔄</div>
+        <h3 class="font-semibold text-white mb-1">System Gaps</h3>
+        <p class="text-xs text-slate-400">Broken processes, no audit trail, compliance blind spots, multi-jurisdiction complexity</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5 text-center">
+        <div class="text-3xl mb-3">🤖</div>
+        <h3 class="font-semibold text-white mb-1">Agent Gaps</h3>
+        <p class="text-xs text-slate-400">Work that should be automated but isn't, AI opportunities nobody has identified yet</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-slate-800 py-8">
+  <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2 mono text-sm text-slate-500">
+      <span class="text-brand-400">●</span> online
+    </div>
+    <div class="flex items-center gap-6 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+      <a href="#" class="hover:text-brand-400 transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w, h, particles = [];
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+class Particle {
+  constructor() { this.reset(); this.y = Math.random() * h; }
+  reset() { this.x = Math.random() * w; this.y = -10; this.vx = (Math.random()-0.5)*0.3; this.vy = Math.random()*0.4+0.2; this.size = Math.random()*1.5+0.5; this.opacity = Math.random()*0.4+0.1; }
+  update() { this.x += this.vx; this.y += this.vy; if (this.y > h+10) this.reset(); if (this.x < -10) this.x = w+10; if (this.x > w+10) this.x = -10; }
+  draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle = `rgba(16,185,129,${this.opacity})`; ctx.fill(); }
+}
+function drawGrid() { ctx.strokeStyle = 'rgba(30,41,59,0.4)'; ctx.lineWidth = 0.5; const s = 60; for (let x=0; x<w; x+=s) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); } for (let y=0; y<h; y+=s) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); } }
+for (let i=0; i<80; i++) particles.push(new Particle());
+function animate() { ctx.clearRect(0,0,w,h); drawGrid(); particles.forEach(p=>{p.update();p.draw()}); requestAnimationFrame(animate); }
+animate();
+</script>
+</body>
+</html>
