@@ -4,105 +4,109 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Most Jobs Are Just Legacy Code — Kyle Yuen</title>
+<meta name="description" content="Why companies skip the redesign and go straight to automation — and why that usually fails.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
-<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}.prose p{margin-bottom:1.25em;line-height:1.75;color:#94a3b8}.prose h2{color:#fff;font-weight:700;font-size:1.25rem;margin-top:2em;margin-bottom:0.75em}.prose ul{list-style-type:disc;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose li{margin-bottom:0.5em}.prose strong{color:#e2e8f0}</style>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+</style>
 </head>
-<body class="text-slate-300 antialiased">
-<canvas id="bg"></canvas>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
 <div class="content">
-<nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
-  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
-  <div class="flex items-center gap-8 text-sm">
-    <a href="/work" class="text-slate-400 hover:text-brand-400 transition-colors">Work</a>
-    <a href="/ideas" class="text-brand-400 font-medium">Ideas</a>
-    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
-    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+
+<nav class="max-w-5xl mx-auto px-6 py-6">
+  <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-600 font-bold text-lg mono">K°</span>
+      <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+      <a href="/ideas" class="text-slate-900 font-semibold">Ideas</a>
+      <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+      <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+    </div>
   </div>
 </nav>
 
 <article class="max-w-3xl mx-auto px-6 pt-12 pb-20">
   <header class="mb-10">
-    <div class="mono text-xs text-brand-400 mb-3">Ideas — Issue 001</div>
-    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Most Jobs Are Just Legacy Code</h1>
-    <p class="text-slate-500 text-sm">A short argument for redesigning roles before you automate them.</p>
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-200">Issue 001</span>
+      <span class="mono text-xs text-slate-500">4 min read</span>
+      <span class="mono text-xs text-slate-500">AI · Work Design</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Most Jobs Are Just Legacy Code</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">Why companies skip the redesign and go straight to automation — and why that usually fails.</p>
   </header>
 
   <div class="prose">
-    <p>Here is a quiet truth about most organizations: the majority of roles and processes are not designed. They accumulated. Someone built a workflow fifteen years ago, added steps to it over time, and now nobody remembers why half of those steps exist. Technology changed, regulations changed, customer expectations changed — but the work itself mostly stayed the same.</p>
-
-    <p>That is why so many AI projects feel underwhelming. Companies skip the redesign and go straight to automation. They ask: "How do we make this process faster?" when they should be asking: "Does this process still make sense?"</p>
-
-    <h2>The customs broker example</h2>
-
-    <p>Take customs brokerage. To many people, it looks like a specialist role that requires years of experience, deep product knowledge, and judgment. And in some cases it does. But a large portion of the day-to-day work is HS code classification: looking up what code applies to a product, checking whether it falls into multiple categories, and selecting the most accurate one.</p>
-
-    <p>This is not a judgment problem. It is a structured search problem. Build a robust HS code lookup that can identify products correctly and suggest alternatives when a product fits multiple categories, and you have removed a huge slice of repetitive work. The broker does not disappear. They move up the value chain: handling exceptions, complex rulings, disputes, and client relationships. The automation does the part that never needed a human in the first place.</p>
-
-    <p>The mistake is to assume the role is a single unit that must either be automated or preserved. Most roles are bundles. Some parts belong to a human. Some parts belong to a system. The opportunity is in separating them cleanly.</p>
-
-    <h2>The wrong kind of automation</h2>
-
-    <p>I once saw a team build a tool to auto-fill PDF forms for CBSA submissions. It saved time compared to typing the same information by hand. But the real problem was not typing speed. The real problem was that CBSA already accepts electronic data submission, and the team was still treating the PDF as the source of truth.</p>
-
-    <p>They automated a workaround instead of fixing the workflow. A better question would have been: "How do we submit this information directly to CBSA and skip the PDF entirely?" The same pattern shows up everywhere: tools that auto-fill templates instead of capturing clean data, chatbots that answer repetitive questions instead of fixing the underlying confusion, dashboards that report problems instead of preventing them.</p>
-
-    <p>Another common version: building templates to collect missing information from customers, when the real fix is designing the intake workflow so incomplete entries cannot happen in the first place.</p>
-
-    <p>Automation applied to a broken process just produces broken output faster.</p>
-
-    <h2>A simple rule for what stays human</h2>
-
-    <p>Not everything should be automated. My rule of thumb: if an action can lead to two very different outcomes, and the right choice cannot be resolved by historical data or an agreed protocol, a human should be involved.</p>
-
-    <p>For example, choosing whether to terminate an employee is not something you hand to an agent. There is no clean dataset that tells you what the right call is. It depends on context, risk, values, and judgment. But gathering the relevant documents, checking policy references, and drafting a neutral summary of the facts? That can absolutely be delegated.</p>
-
-    <p>The goal is not to remove people. The goal is to stop wasting human attention on work that does not need it.</p>
-
-    <h2>What to do with this</h2>
-
-    <p>Pick one role or process in your organization and ask three questions:</p>
-
+    <p>Most jobs are not designed. They are inherited. A process that made sense in 2012 gets patched, outsourced, partially automated, and handed to the next hire. By 2024 it is a bundle of rituals nobody questions.</p>
+    
+    <p>When leaders see this, their first instinct is to buy automation. They want the robot to do the ritual faster. But automation without redesign just speeds up bad work. It embeds the legacy logic into software, where it becomes even harder to change.</p>
+    
+    <p>The better move is to treat the role like legacy code. Before you automate anything, you refactor:</p>
+    
     <ul>
-      <li>Which steps exist only because of an older system or older rule?</li>
-      <li>Which decisions are truly judgment-based, and which are just lookups or matching?</li>
-      <li>If you were designing this workflow from scratch today, what would disappear?</li>
+      <li>What is the actual outcome this job exists to produce?</li>
+      <li>Which steps require human judgment?</li>
+      <li>Which steps are just carrying information from one place to another?</li>
+      <li>What would the workflow look like if it were designed today?</li>
     </ul>
-
-    <p>You will usually find that the work can be split into smaller pieces than you assumed. Some pieces go to AI. Some pieces go to humans. Some pieces go away entirely. That decomposition is the real value — not the tool you buy to speed up the old process.</p>
-
-    <p>The organizations that get ahead in the next decade will not be the ones with the most AI tools. They will be the ones that looked honestly at how work is structured and redesigned it for the technology that already exists.</p>
+    
+    <p>Only after that should you decide whether the fix is automation, AI, a system change, or a redefined role. Sometimes the right answer is not a faster tool — it is removing a step entirely.</p>
+    
+    <p>AI is forcing this question on every organization. The companies that get ahead will be the ones that redesign before they automate.</p>
   </div>
 
-  <footer class="mt-16 pt-8 border-t border-slate-800">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-      <div class="text-sm text-slate-500">
-        <span class="text-slate-300">Idea by Kyle Yuen.</span> Drafted with AI assistance and reviewed before publishing.
-      </div>
-      <a href="/ideas" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-500 transition-colors">
-        ← Back to Ideas
-      </a>
-    </div>
+  <footer class="mt-16 pt-8 border-t border-slate-200">
+    <p class="text-sm text-slate-500 mb-6">Idea by Kyle Yuen. Drafted with AI assistance and reviewed before publishing.</p>
+    <a href="/ideas" class="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 transition-colors">← Back to Ideas</a>
   </footer>
 </article>
 
-<footer class="border-t border-slate-800 py-8">
-  <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
-    <div class="flex items-center gap-6 text-sm text-slate-500">
-      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
-      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-200 flex items-center justify-center text-brand-600 font-bold text-sm mono">K°</span>
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-600 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+      <a href="https://github.com/kyle-6099" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">GitHub</a>
     </div>
   </div>
 </footer>
+
 </div>
-<script>
-const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
-function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
-class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
-function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
-for(let i=0;i<80;i++)p.push(new P());
-function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
-</script>
 </body>
 </html>

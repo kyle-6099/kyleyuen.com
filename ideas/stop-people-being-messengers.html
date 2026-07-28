@@ -4,133 +4,136 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stop People From Being Messengers — Kyle Yuen</title>
+<meta name="description" content="The real foundation of automation is removing unnecessary human-to-human information transport.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
-<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}.prose p{margin-bottom:1.25em;line-height:1.75;color:#94a3b8}.prose h2{color:#fff;font-weight:700;font-size:1.25rem;margin-top:2em;margin-bottom:0.75em}.prose ul{list-style-type:disc;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose li{margin-bottom:0.5em}.prose strong{color:#e2e8f0}.prose ol{list-style-type:decimal;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose ol li{margin-bottom:0.75em}</style>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+</style>
 </head>
-<body class="text-slate-300 antialiased">
-<canvas id="bg"></canvas>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
 <div class="content">
-<nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
-  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
-  <div class="flex items-center gap-8 text-sm">
-    <a href="/work" class="text-slate-400 hover:text-brand-400 transition-colors">Work</a>
-    <a href="/ideas" class="text-brand-400 font-medium">Ideas</a>
-    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
-    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+
+<nav class="max-w-5xl mx-auto px-6 py-6">
+  <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-600 font-bold text-lg mono">K°</span>
+      <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+      <a href="/ideas" class="text-slate-900 font-semibold">Ideas</a>
+      <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+      <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+    </div>
   </div>
 </nav>
 
 <article class="max-w-3xl mx-auto px-6 pt-12 pb-20">
   <header class="mb-10">
-    <div class="mono text-xs text-brand-400 mb-3">Ideas — Issue 002</div>
-    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Stop People From Being Messengers</h1>
-    <p class="text-slate-500 text-sm">The real foundation of automation is not speed. It is removing unnecessary human-to-human information transport.</p>
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-200">Issue 002</span>
+      <span class="mono text-xs text-slate-500">4 min read</span>
+      <span class="mono text-xs text-slate-500">Automation · Operations</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Stop People From Being Messengers</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">The real foundation of automation is not speed. It is removing unnecessary human-to-human information transport.</p>
   </header>
 
   <div class="prose">
+    <h2>The wrong question</h2>
     <p>A lot of automation starts with the wrong question.</p>
-
     <p>The question is usually: <em>How do we make this process faster?</em></p>
-
     <p>The better question is: <em>Why is a person carrying this information in the first place?</em></p>
-
+    
+    <h2>Most internal back-and-forth is information transport</h2>
     <p>Most internal back-and-forth is not collaboration. It is information transport. Someone needs something from somewhere else, so they send a message. Then they wait. Then they follow up. Then they forward the reply to a third person. The work keeps moving, but it moves through people who have no business being part of the decision.</p>
-
+    
     <p>That is the real foundation of automation: stop using humans as messengers.</p>
-
+    
     <h2>The onboarding example</h2>
-
     <p>Take a typical onboarding flow. A new hire starts next Monday. HR creates the employee record, then messages IT to set up an email account. IT replies asking for the employee's department, job title, and start date. HR forwards that to the hiring manager, who confirms access needs. IT creates the account and tells everyone. By the time the employee logs in, three people have spent half a day shuttling information they did not shape.</p>
-
+    
     <p>Here is the problem: HR does not decide what information IT needs to create an email account. HR is just the courier. The hiring manager does not add much judgment either — access is usually standard for the role. The whole loop exists because the data lives in one place, the action lives in another place, and no system connects them.</p>
-
+    
     <p>The fix is not a faster message. The fix is removing the message.</p>
-
-    <p>If the HRIS collects department, title, start date, and role during onboarding — and those fields are mandatory — the system already has everything it needs. The trigger is the completed onboarding record. From there, the system can generate the IT request automatically, assign role-based access, and notify the manager without anyone writing a message.</p>
-
-    <p>HR's job was never to carry that data. Their job is to make sure the right person is hired and the right information is collected. Once the data is clean, the system should carry it.</p>
-
+    
     <h2>The data exposure problem</h2>
-
     <p>There is a second, less obvious cost to messengers: they often see information they do not need.</p>
-
+    
     <p>Consider a finance onboarding step. The accounting manager fills a custom field in the HRIS that determines which legal entities the new accountant can access in the accounting system, and at what level. That information is specific to finance. HR does not need to see it. IT usually does not need to see it either — unless the setup is manual, in which case they only need the final configuration, not the reasoning behind it.</p>
-
+    
     <p>But in most organizations, that detail travels through Slack, email, or a ticket. It passes through HR. It sits in an IT queue. More people now know which entities the accountant can touch and why, even though the decision was already made by the accounting manager.</p>
-
-    <p>This is not just inefficient. It is a privacy and access-control leak dressed up as process. When a system carries the data, it can route only the required output to only the required recipient. The original decision and supporting detail stay with the person who owns them.</p>
-
-    <p>Automation is sometimes sold as speed. It is also a way to enforce need-to-know by design.</p>
-
-    <h2>What the redesigned flow looks like</h2>
-
-    <p>Here is the same finance onboarding step, described as a trigger-based flow:</p>
-
-    <ol>
-      <li><strong>Employee starts.</strong> A trigger fires in the HRIS.</li>
-      <li><strong>The HRIS checks</strong> whether department, role, start date, and required access fields are complete.</li>
-      <li><strong>If data is incomplete:</strong> the HRIS sends a structured request to the accounting manager to provide the missing fields. Once provided, the flow returns to step 2.</li>
-      <li><strong>If data is complete:</strong> the HRIS passes the record to the accounting manager to set or confirm entity access rules and levels.</li>
-      <li><strong>If the rules are invalid:</strong> the accounting manager corrects them, and the flow returns to step 4.</li>
-      <li><strong>If the rules are valid:</strong> IT automation creates the accounts and applies the rules directly to the accounting system.</li>
-      <li><strong>The manager is notified</strong> that access is ready.</li>
-      <li><strong>The employee is notified automatically.</strong></li>
-    </ol>
-
-    <p>In this version, HR never sees the entity access detail. IT automation only sees the final configuration. The accounting manager still approves the rules, because that is a judgment call. Everything else is carried by the trigger.</p>
-
+    
+    <p>This is not just inefficient. It is a privacy and access-control leak dressed up as process. When a system carries the data, it can route only the required output to only the required recipient.</p>
+    
     <h2>A simple test</h2>
-
     <p>Pick any recurring internal request and ask two questions:</p>
-
     <ul>
       <li>Who decides what needs to happen?</li>
       <li>Who supplies the facts to make it happen?</li>
     </ul>
-
+    
     <p>If those are two different people, the supplier is a messenger. Remove them from the middle.</p>
-
+    
     <p>Then ask one more:</p>
-
     <ul>
       <li>Does anyone in the middle see information they do not need to know?</li>
     </ul>
-
+    
     <p>If yes, the case for automation is even stronger. The system can carry the data to exactly where it belongs, and stop it everywhere else.</p>
-
+    
     <p>The goal is not fewer people. The goal is people doing the right work — and only seeing what they need to see.</p>
   </div>
 
-  <footer class="mt-16 pt-8 border-t border-slate-800">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-      <div class="text-sm text-slate-500">
-        <span class="text-slate-300">Idea by Kyle Yuen.</span> Drafted with AI assistance and reviewed before publishing.
-      </div>
-      <a href="/ideas" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-500 transition-colors">
-        ← Back to Ideas
-      </a>
-    </div>
+  <footer class="mt-16 pt-8 border-t border-slate-200">
+    <p class="text-sm text-slate-500 mb-6">Idea by Kyle Yuen. Drafted with AI assistance and reviewed before publishing.</p>
+    <a href="/ideas" class="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 transition-colors">← Back to Ideas</a>
   </footer>
 </article>
 
-<footer class="border-t border-slate-800 py-8">
-  <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
-    <div class="flex items-center gap-6 text-sm text-slate-500">
-      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
-      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-200 flex items-center justify-center text-brand-600 font-bold text-sm mono">K°</span>
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-600 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+      <a href="https://github.com/kyle-6099" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">GitHub</a>
     </div>
   </div>
 </footer>
+
 </div>
-<script>
-const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
-function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
-class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
-function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
-for(let i=0;i<80;i++)p.push(new P());
-function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
-</script>
 </body>
 </html>

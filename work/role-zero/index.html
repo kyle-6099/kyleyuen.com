@@ -4,90 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atomic Role Decomposition — Kyle Yuen</title>
+<meta name="description" content="A framework for breaking work into atomic tasks, separating human judgment from automatable execution, and redesigning roles around collaboration.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{400:'#34d399',500:'#10b981',600:'#059669'}}}}}</script>
-<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');body{font-family:'Inter',sans-serif;background:#0a0a0b}.mono{font-family:'JetBrains Mono',monospace}canvas{position:fixed;top:0;left:0;z-index:0;pointer-events:none}.content{position:relative;z-index:1}.prose p{margin-bottom:1.25em;line-height:1.75;color:#94a3b8}.prose h2{color:#fff;font-weight:700;font-size:1.25rem;margin-top:2em;margin-bottom:0.75em}.prose ul{list-style-type:disc;padding-left:1.5em;margin-bottom:1.25em;color:#94a3b8}.prose li{margin-bottom:0.5em}.prose strong{color:#e2e8f0}</style>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+</style>
 </head>
-<body class="text-slate-300 antialiased">
-<canvas id="bg"></canvas>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
 <div class="content">
-<nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
-  <a href="/" class="mono text-brand-400 font-medium tracking-tight flex items-center gap-2"><span class="text-lg">◎</span> <span>Role Zero</span></a>
-  <div class="flex items-center gap-8 text-sm">
-    <a href="/work" class="text-brand-400 font-medium">Work</a>
-    <a href="/ideas" class="text-slate-400 hover:text-brand-400 transition-colors">Ideas</a>
-    <a href="/about" class="text-slate-400 hover:text-brand-400 transition-colors">About</a>
-    <a href="/contact" class="text-slate-400 hover:text-brand-400 transition-colors">Contact</a>
+
+<nav class="max-w-5xl mx-auto px-6 py-6">
+  <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-600 font-bold text-lg mono">K°</span>
+      <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/work" class="text-slate-900 font-semibold">Work</a>
+      <a href="/ideas" class="text-slate-600 hover:text-slate-900 transition-colors">Ideas</a>
+      <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+      <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+    </div>
   </div>
 </nav>
 
 <article class="max-w-3xl mx-auto px-6 pt-12 pb-20">
   <header class="mb-10">
-    <div class="flex flex-wrap items-center gap-3 mb-3">
-      <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Pinned</span>
-      <span class="mono text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">Role Zero</span>
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-200">Pinned</span>
+      <span class="mono text-xs text-slate-500">Framework</span>
     </div>
-    <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Atomic Role Decomposition for AI-Powered Operations</h1>
-    <p class="text-slate-500 text-sm">A methodology for redesigning roles around human-AI collaboration.</p>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Atomic Role Decomposition for AI-Powered Operations</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">A framework for breaking work down into its smallest useful units — tasks, workflows, and decisions — and reassembling them so humans and AI each handle what they do best.</p>
   </header>
 
   <div class="prose">
-    <h2>Overview</h2>
-    <p>Role Zero is a framework for breaking work down into its smallest useful units — tasks, workflows, and decisions — and reassembling them so humans and AI each handle what they do best. The goal is to redesign roles around collaboration rather than replacement.</p>
-
-    <h2>The problem with current automation thinking</h2>
-    <p>Most organizations skip the redesign step and go straight to automation. They ask "How do we make this faster?" instead of "Does this process still make sense?" The result is faster versions of broken workflows, not better ones.</p>
-
-    <h2>The methodology</h2>
+    <h2>The problem with automation-first thinking</h2>
+    <p>Most automation projects start by asking what a tool can do. The better question is what the work actually requires. Until you decompose a role into its atomic parts, you cannot know which parts should stay human, which should become deterministic automation, and which can be handled by an AI agent.</p>
+    
+    <h2>The decomposition stack</h2>
+    <p>Every role can be broken into three layers:</p>
+    
     <ul>
-      <li><strong>Discovery:</strong> Define the role, context, scope, and pain points.</li>
-      <li><strong>Decomposition:</strong> Break the role into atomic work units, each small enough that ownership is unambiguous.</li>
-      <li><strong>Mapping:</strong> Assign each unit to human, automation, AI agent, or hybrid ownership.</li>
-      <li><strong>Validation:</strong> Check coverage, handoffs, and risk.</li>
-      <li><strong>Output:</strong> Produce a reusable blueprint and implementation plan.</li>
+      <li><strong>Tasks:</strong> The smallest units of work — answer an email, approve a request, reconcile a report.</li>
+      <li><strong>Workflows:</strong> Sequences of tasks that produce an outcome — onboard an employee, process a payroll exception, resolve a compliance flag.</li>
+      <li><strong>Decisions:</strong> Points where ambiguity requires judgment — investigate a discrepancy, approve a non-standard arrangement, escalate an ER issue.</li>
     </ul>
-
-    <h2>Current test case: HR Generalist</h2>
-    <p>I am starting with the HR Generalist role: mapping the day-to-day work, separating judgment from repetitive execution, and designing how AI agents handle the routine while the human owns decisions, relationships, and exceptions.</p>
-
-    <h2>Why this matters</h2>
-    <p>The organizations that get ahead will not be the ones with the most AI tools. They will be the ones that looked honestly at how work is structured and redesigned it for the technology that already exists.</p>
+    
+    <p>Once the work is mapped at this level, you can route each unit to the right owner.</p>
+    
+    <h2>Ownership model</h2>
+    <p>I use a four-category ownership model to decide who or what does the work:</p>
+    
+    <ul>
+      <li><strong>Automation:</strong> Deterministic, rule-based tasks with no ambiguity.</li>
+      <li><strong>AI agent:</strong> Reversible, language-based, or ambiguous tasks where an LLM adds value.</li>
+      <li><strong>Human:</strong> Judgment, relationships, exceptions, and accountability.</li>
+      <li><strong>Hybrid:</strong> Human confirms or refines output generated by a system or agent.</li>
+    </ul>
+    
+    <p>The rule is simple: try deterministic automation first. Only use AI where the task is too ambiguous for hard rules but still reversible. Never automate accountability.</p>
+    
+    <h2>Why this matters now</h2>
+    <p>AI is making it possible to restructure work at a level we have not seen before. But most organizations will waste the opportunity because they automate before they redesign. Atomic role decomposition is the prerequisite: it forces you to understand the work before you change who or what does it.</p>
   </div>
 
-  <div class="mt-12 pt-8 border-t border-slate-800">
-    <p class="text-sm text-slate-500 mb-4">Tags:</p>
-    <div class="flex flex-wrap gap-2">
-      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">ai-agents</span>
-      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">role-design</span>
-      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">workflow-decomposition</span>
-      <span class="mono text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded border border-slate-700">human-ai-collaboration</span>
-    </div>
-  </div>
-
-  <footer class="mt-16 pt-8 border-t border-slate-800">
-    <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-500 transition-colors">
-      ← Back to Work
-    </a>
+  <footer class="mt-16 pt-8 border-t border-slate-200">
+    <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 transition-colors">← Back to Work</a>
   </footer>
 </article>
 
-<footer class="border-t border-slate-800 py-8">
-  <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2 mono text-sm text-slate-500"><span class="text-brand-400">●</span> online</div>
-    <div class="flex items-center gap-6 text-sm text-slate-500">
-      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-400 transition-colors mono">kyle@kyleyuen.com</a>
-      <a href="https://linkedin.com/in/kyleyuen" class="hover:text-brand-400 transition-colors">LinkedIn</a>
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-200 flex items-center justify-center text-brand-600 font-bold text-sm mono">K°</span>
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="mailto:kyle@kyleyuen.com" class="hover:text-brand-600 transition-colors mono">kyle@kyleyuen.com</a>
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+      <a href="https://github.com/kyle-6099" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">GitHub</a>
     </div>
   </div>
 </footer>
+
 </div>
-<script>
-const c=document.getElementById('bg'),x=c.getContext('2d');let w,h,p=[];
-function r(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}r();window.addEventListener('resize',r);
-class P{constructor(){this.reset();this.y=Math.random()*h}reset(){this.x=Math.random()*w;this.y=-10;this.vx=(Math.random()-0.5)*0.3;this.vy=Math.random()*0.4+0.2;this.size=Math.random()*1.5+0.5;this.opacity=Math.random()*0.4+0.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.y>h+10)this.reset();if(this.x<-10)this.x=w+10;if(this.x>w+10)this.x=-10}draw(){x.beginPath();x.arc(this.x,this.y,this.size,0,Math.PI*2);x.fillStyle=`rgba(16,185,129,${this.opacity})`;x.fill()}}
-function g(){x.strokeStyle='rgba(30,41,59,0.4)';x.lineWidth=0.5;const s=60;for(let i=0;i<w;i+=s){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=s){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}}
-for(let i=0;i<80;i++)p.push(new P());
-function a(){x.clearRect(0,0,w,h);g();p.forEach(q=>{q.update();q.draw()});requestAnimationFrame(a)}a();
-</script>
 </body>
 </html>
