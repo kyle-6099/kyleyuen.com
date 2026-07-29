@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work — Kyle Yuen</title>
-<meta name="description" content="Selected projects by Kyle Yuen: role redesign, HR systems, AI-agent workflows, and telecom.">
+<title>Work Mockup A — Kyle Yuen</title>
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -32,15 +31,9 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 .content { position: relative; z-index: 1; }
 .glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
 .card-hover { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
-.card-hover:hover { transform: translateY(-2px); border-color: rgba(99,102,241,0.35); box-shadow: 0 20px 60px -30px rgba(99,102,241,0.12); }
-.work-card { transition: all .2s ease; }
-.work-card.hidden-card { display: none; }
-.filter-btn.active { background: rgba(30,58,138,0.08); border-color: rgba(30,58,138,0.35); color: #1e3a8a; }
-.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
-.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
-.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
-.prose li { margin-bottom: 0.5em; }
-.prose strong { color: #1e293b; }
+.card-hover:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.35); box-shadow: 0 24px 70px -30px rgba(99,102,241,0.15); }
+.filter-btn { transition: all 0.2s ease; }
+.filter-btn.active { background: #1e3a8a; color: white; border-color: #1e3a8a; }
 </style>
 </head>
 <body class="text-slate-700 antialiased">
@@ -65,79 +58,106 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 <section class="max-w-5xl mx-auto px-6 pt-12 pb-20">
   <div class="mb-12">
     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Work</h1>
-    <p class="text-slate-600 max-w-2xl">Projects where I identified the real gap and resolved it with the right solution. Each entry links to a deeper write-up.</p>
+    <p class="text-slate-600 max-w-2xl">Selected projects across role design, HR systems, unified communications, and AI-agent workflows.</p>
   </div>
 
   <!-- Filter bar -->
-  <div class="mb-10">
-    <p class="text-xs text-slate-500 mb-3 mono">Filter by category</p>
-    <div id="filter-bar" class="flex flex-wrap gap-2">
-      <button data-filter="all" class="filter-btn active mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">All</button>
-      <button data-filter="microsoft-teams" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">microsoft-teams</button>
-      <button data-filter="ucaa" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">ucaa</button>
-      <button data-filter="mobile-integration" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">mobile-integration</button>
-      <button data-filter="it-strategy" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">it-strategy</button>
-      <button data-filter="ai-agents" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">ai-agents</button>
-      <button data-filter="workflow-automation" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">workflow-automation</button>
-      <button data-filter="hris-integration" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">hris-integration</button>
-      <button data-filter="role-design" class="filter-btn mono text-xs bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded hover:border-slate-300 transition-all">role-design</button>
-    </div>
+  <div class="flex flex-wrap gap-2 mb-10">
+    <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="all">all</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="microsoft-teams">microsoft-teams</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="ucaa">ucaa</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="mobile-integration">mobile-integration</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="it-strategy">it-strategy</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="ai-agents">ai-agents</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="workflow-automation">workflow-automation</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-integration">hris-integration</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="role-design">role-design</button>
   </div>
 
-  <div id="work-list" class="space-y-5">
-    <a href="/work/role-zero/" data-tags="role-design human-ai-collaboration workflow-decomposition ai-agents" class="work-card glass rounded-2xl p-6 md:p-8 card-hover block group">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-        <div class="flex items-center gap-3">
-          <span class="mono text-xs text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-200">Pinned</span>
-          <span class="mono text-xs text-slate-500">Framework</span>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">ai-agents</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">role-design</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">workflow-decomposition</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">human-ai-collaboration</span>
-        </div>
-      </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Atomic Role Decomposition for AI-Powered Operations</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">A framework for breaking work into atomic tasks, separating human judgment from automatable execution, and redesigning roles around collaboration rather than replacement.</p>
-    </a>
+  <!-- Work grid Option A: clean light cards, no dark images -->
+  <div id="work-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <a href="/work/teams-phone-mobile/" data-tags="microsoft-teams ucaa mobile-integration it-strategy" class="work-card glass rounded-2xl p-6 md:p-8 card-hover block group">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-        <div class="flex items-center gap-3">
-          <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Work</span>
-          <span class="mono text-xs text-slate-500">Telecom / UCaaS</span>
+    <!-- Role Zero -->
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="role-design workflow-automation ai-agents">
+      <div class="flex items-start justify-between mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-200 flex items-center justify-center">
+          <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <line x1="4" y1="9" x2="20" y2="9"/>
+            <line x1="9" y1="20" x2="9" y2="9"/>
+          </svg>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">microsoft-teams</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">ucaa</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">mobile-integration</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">it-strategy</span>
-        </div>
+        <span class="mono text-xs text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-200">Framework</span>
       </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Microsoft Teams Phone + Mobile</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">A company using Microsoft Teams for office calls could not reach its field staff reliably. I rolled out Teams Phone Mobile so field staff could answer queue calls from their native mobile dialer, with one work number across Teams and mobile.</p>
-    </a>
 
-    <a href="/work/multi-agent-hr-hub/" data-tags="ai-agents workflow-automation pii-governance hris-integration" class="work-card glass rounded-2xl p-6 md:p-8 card-hover block group">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-        <div class="flex items-center gap-3">
-          <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Work</span>
-          <span class="mono text-xs text-slate-500">AI Prototype</span>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">ai-agents</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">workflow-automation</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">pii-governance</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">hris-integration</span>
-        </div>
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">role-design</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">workflow-automation</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">ai-agents</span>
       </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Multi-Agent HR Hub-and-Spoke</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">Built a live prototype that routes HR requests to specialist agents while keeping sensitive information in the right context.</p>
-    </a>
+
+      <a href="/work/role-zero/" class="block group">
+        <h2 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Atomic Role Decomposition</h2>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">A framework for breaking work into tasks, workflows, and decisions, then routing each part to the right owner.</p>
+        <span class="text-sm text-brand-600 font-medium group-hover:text-brand-700 transition-colors">Read more →</span>
+      </a>
+    </article>
+
+    <!-- Teams Phone Mobile -->
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="microsoft-teams ucaa mobile-integration it-strategy">
+      <div class="flex items-start justify-between mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-200 flex items-center justify-center">
+          <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Case Study</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">microsoft-teams</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">ucaa</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">mobile-integration</span>
+      </div>
+
+      <a href="/work/teams-phone-mobile/" class="block group">
+        <h2 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Microsoft Teams Phone + Mobile</h2>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">Company-wide Teams Phone rollout that let field staff answer call queue calls from their native mobile dialer.</p>
+        <span class="text-sm text-brand-600 font-medium group-hover:text-brand-700 transition-colors">Read more →</span>
+      </a>
+    </article>
+
+    <!-- Multi-Agent HR Hub -->
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="ai-agents workflow-automation hris-integration">
+      <div class="flex items-start justify-between mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-200 flex items-center justify-center">
+          <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.66 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Prototype</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">ai-agents</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">workflow-automation</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">hris-integration</span>
+      </div>
+
+      <a href="/work/multi-agent-hr-hub/" class="block group">
+        <h2 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Multi-Agent HR Hub-and-Spoke</h2>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">A live prototype for routing HR work to specialist AI agents without leaking sensitive information.</p>
+        <span class="text-sm text-brand-600 font-medium group-hover:text-brand-700 transition-colors">Read more →</span>
+      </a>
+    </article>
+
   </div>
 
-  <p id="no-results" class="hidden text-slate-500 text-sm mt-8">No projects match this filter.</p>
+  <div class="mt-16 p-6 glass rounded-2xl">
+    <h2 class="text-lg font-bold text-slate-900 mb-2">How I work</h2>
+    <p class="text-slate-600 text-sm leading-relaxed">I start by understanding the outcome a role or process is supposed to produce, then redesign the workflow before choosing tools. Automation and AI come last, after the work itself is clear.</p>
+  </div>
 </section>
 
 <footer class="border-t border-slate-200 py-10">
@@ -155,31 +175,23 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 </footer>
 
 </div>
+
 <script>
 const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.work-card');
-const noResults = document.getElementById('no-results');
+const workItems = document.querySelectorAll('#work-grid .tile');
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const filter = btn.dataset.filter;
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    let visible = 0;
-    cards.forEach(card => {
-      const tags = card.dataset.tags || '';
-      if (filter === 'all' || tags.split(' ').includes(filter)) {
-        card.classList.remove('hidden-card');
-        visible++;
-      } else {
-        card.classList.add('hidden-card');
-      }
+    workItems.forEach(item => {
+      const tags = item.dataset.tags || '';
+      item.style.display = (filter === 'all' || tags.includes(filter)) ? 'flex' : 'none';
     });
-
-    noResults.classList.toggle('hidden', visible > 0);
   });
 });
 </script>
+
 </body>
 </html>
