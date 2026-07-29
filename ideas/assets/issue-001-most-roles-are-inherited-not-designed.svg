@@ -73,9 +73,9 @@
 
   <!-- title at bottom -->
   <g transform="translate(120, 940)">
-    <text x="0" y="0" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#0f172a" letter-spacing="-0.02em">Most Jobs Are Just</text>
-    <text x="0" y="95" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#0f172a" letter-spacing="-0.02em">Legacy Code</text>
-    <text x="0" y="190" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#0f172a" letter-spacing="-0.02em"></text>
+    <text x="0" y="0" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#0f172a" letter-spacing="-0.02em">Most Roles Are</text>
+    <text x="0" y="95" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#0f172a" letter-spacing="-0.02em">Inherited, Not</text>
+    <text x="0" y="190" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#0f172a" letter-spacing="-0.02em">Designed</text>
   </g>
 
   <!-- brand URL bottom right -->
