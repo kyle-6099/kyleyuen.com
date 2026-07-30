@@ -6,6 +6,7 @@
 <title>Ideas — Kyle Yuen</title>
 <meta name="description" content="Newsletter-style notes by Kyle Yuen on work, systems, and where AI meets operations.">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -37,6 +38,21 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 .tile-share { opacity: 0; transition: opacity 0.2s ease; }
 .tile:hover .tile-share { opacity: 1; }
 @media (max-width: 768px) { .tile-share { opacity: 1; } }
+.idea-tile {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.idea-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99,102,241,0.4);
+  box-shadow: 0 24px 70px -30px rgba(99,102,241,0.18);
+}
+.idea-tile .relative img:last-child {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.idea-tile:hover .relative img:last-child {
+  opacity: 1;
+}
 </style>
 </head>
 <body class="text-slate-700 antialiased">
@@ -60,7 +76,7 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
   </div>
 </nav>
 
-<section class="max-w-5xl mx-auto px-6 pt-16 pb-20">
+<section class="max-w-5xl mx-auto px-6 pt-20 pb-24">
   <div class="mb-12">
     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Ideas</h1>
     <p class="text-slate-600 max-w-2xl">Notes on work, systems, and where AI meets operations. Each post starts with my own experience; AI helps with the draft.</p>
@@ -70,10 +86,13 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     
   <!-- Issue 003 -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white">
+    <article class="tile idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">
       <a href="/ideas/data-wont-replace-judgment-it-will-replace-guessing.html" class="block">
         <div class="aspect-square overflow-hidden bg-slate-100">
-          <img src="/ideas/assets/issue-003-data-wont-replace-judgment-it-will-replace-guessing.png" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+          <div class="relative aspect-square overflow-hidden">
+          <img src="/ideas/assets/issue-003-data-wont-replace-judgment-it-will-replace-guessing-muted.png" class="absolute inset-0 w-full h-full object-cover" alt="">
+          <img src="/ideas/assets/issue-003-data-wont-replace-judgment-it-will-replace-guessing.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 ease-out" alt="">
+        </div> alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
         </div>
       </a>
       
@@ -97,10 +116,13 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     </article>
 
     <!-- Issue 002 -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white">
+    <article class="tile idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">
       <a href="/ideas/stop-people-being-messengers.html" class="block">
         <div class="aspect-square overflow-hidden bg-slate-100">
-          <img src="/ideas/assets/issue-002-stop-people-from-being-messengers.png" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+          <div class="relative aspect-square overflow-hidden">
+          <img src="/ideas/assets/issue-002-stop-people-from-being-messengers-muted.png" class="absolute inset-0 w-full h-full object-cover" alt="">
+          <img src="/ideas/assets/issue-002-stop-people-from-being-messengers.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 ease-out" alt="">
+        </div> alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
         </div>
       </a>
       
@@ -124,10 +146,13 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     </article>
 
     <!-- Issue 001 -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white">
+    <article class="tile idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">
       <a href="/ideas/most-roles-are-inherited-not-designed.html" class="block">
         <div class="aspect-square overflow-hidden bg-slate-100">
-          <img src="/ideas/assets/issue-001-most-roles-are-inherited-not-designed.png" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+          <div class="relative aspect-square overflow-hidden">
+          <img src="/ideas/assets/issue-001-most-roles-are-inherited-not-designed-muted.png" class="absolute inset-0 w-full h-full object-cover" alt="">
+          <img src="/ideas/assets/issue-001-most-roles-are-inherited-not-designed.png" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 ease-out" alt="">
+        </div> alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
         </div>
       </a>
       
@@ -177,5 +202,6 @@ function shareToLinkedIn(path, title) {
 }
 </script>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>
