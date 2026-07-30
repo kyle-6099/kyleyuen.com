@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work Mockup A — Kyle Yuen</title>
+<title>Work — Kyle Yuen</title>
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -34,6 +34,8 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 .glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
 .card-hover { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
 .card-hover:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.35); box-shadow: 0 24px 70px -30px rgba(99,102,241,0.15); }
+.icon-box { width: 3.5rem; height: 3.5rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border: 1px solid #e2e8f0; }
+.icon-box svg { width: 1.5rem; height: 1.5rem; }
 .filter-btn { transition: all 0.2s ease; }
 .filter-btn.active { background: #1e3a8a; color: white; border-color: #1e3a8a; }
 </style>
@@ -74,12 +76,36 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="it-strategy">it-strategy</button>
     <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="ai-agents">ai-agents</button>
     <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="workflow-automation">workflow-automation</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-integration">hris-integration</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-implementation">hris-implementation</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="payroll">payroll</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-experience">employee-experience</button>
     <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="role-design">role-design</button>
   </div>
 
   <!-- Work grid Option A: clean light cards, no dark images -->
   <div id="work-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- First HRIS at a 100-Year Company -->
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="hris-implementation hr-systems payroll employee-experience workflow-automation">
+      <div class="flex items-start justify-between mb-6">
+        <div class="icon-box text-brand-600">
+          <i data-lucide="database"></i>
+        </div>
+        <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Case Study</span>
+      </div>
+
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">hris-implementation</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">hr-systems</span>
+        <span class="mono text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded border border-slate-200">payroll</span>
+      </div>
+
+      <a href="/work/humi-first-hris/" class="block group">
+        <h2 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">First HRIS at a 100-Year Company</h2>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">Implemented Humi as the first HRIS, replacing shared Excel leave tracking and email approvals with core HR, time-off, benefits, and managed payroll.</p>
+        <span class="text-sm text-brand-600 font-medium group-hover:text-brand-700 transition-colors">Read more →</span>
+      </a>
+    </article>
 
     <!-- Role Zero -->
     <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="role-design workflow-automation ai-agents">
