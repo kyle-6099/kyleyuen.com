@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connecting a Legacy Reservation System to Modern Records — Kyle Yuen</title>
+<meta name="description" content="Building an MS Access travel document database that fed client information into a legacy GDS reservation system used by a corporate travel team.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+html { overflow-y: scroll; }
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+</style>
+</head>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
+<div class="content">
+
+<nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-slate-200/50 px-6 py-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-600 font-bold text-lg mono">K°</span>
+        <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+        <a href="/ideas" class="text-slate-600 hover:text-slate-900 transition-colors">Ideas</a>
+        <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-20 pb-24">
+  <header class="mb-10">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Work</span>
+      <span class="mono text-xs text-slate-500">Corporate Travel / Operations</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Connecting a Legacy Reservation System to Modern Records</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">Building an MS Access database that let a corporate travel team enter client information once and feed it into a legacy reservation system.</p>
+  </header>
+
+  <div class="prose">
+    <h2>What they had</h2>
+    <p>The corporate travel team used a global distribution system, or GDS — the command-line reservation system that still powers most airline, hotel, and car bookings behind the scenes. Agents typed short codes to build itineraries, check availability, and issue tickets. It was fast once you knew it, but every booking started from scratch.</p>
+
+    <p>Client details — passport numbers, visa status, frequent flyer numbers, meal and seat preferences — lived in paper files, spreadsheets, or the agent's memory. Agents had to look these up manually and retype them into the GDS for every trip. The same information was entered again and again.</p>
+
+    <h2>What broke</h2>
+    <p>The process was slow and error-prone. Retyping passport numbers or frequent flyer codes led to typos. Visa requirements changed, and the team had no easy way to know which client needed what. New agents spent weeks memorizing client quirks. Experienced agents carried most of the knowledge in their heads.</p>
+
+    <p>The GDS itself was not the problem. It was reliable and fast. The problem was the gap between the GDS and the client information the agents needed to use it.</p>
+
+    <h2>Why the old system is still there</h2>
+    <p>GDS interfaces are still command-based because the travel industry runs on speed and precision. A trained agent can build a complex itinerary in seconds with short commands. A graphical interface adds clicks, load times, and abstraction layers that slow down high-volume booking environments. The command line also keeps agents close to the raw data, which matters when a single typo can strand a traveler or invalidate a ticket.</p>
+
+    <p>The industry has layered modern tools on top of the GDS, but the core reservation engine remains text-based. Replacing it would mean retraining thousands of agents, rebuilding integrations with hundreds of airlines, and accepting slower workflows in a business measured in seconds.</p>
+
+    <h2>What we chose</h2>
+    <p>I worked with IT to build a Microsoft Access travel document database. The database stored each corporate client's key details in one place: passport, visa, frequent flyer numbers, seating and meal preferences, and special requirements. Agents could open a client record, copy the relevant codes, and paste them directly into the GDS.</p>
+
+    <p>It was not a full integration. It was a practical bridge between a modern record-keeping tool and a legacy reservation system that was not going anywhere.</p>
+
+    <p>The database covered:</p>
+    <ul>
+      <li><strong>Passport and visa records.</strong> Quick access to document numbers and expiry dates for international bookings.</li>
+      <li><strong>Frequent flyer numbers.</strong> Airline loyalty programs stored by client and carrier.</li>
+      <li><strong>Preferences and special requests.</strong> Seat, meal, accessibility, and billing notes.</li>
+      <li><strong>Corporate client profiles.</strong> Contact details, approval contacts, and travel policy notes.</li>
+    </ul>
+
+    <h2>My role</h2>
+    <p>I led this as the corporate travel team manager. I defined what information the agents needed at the point of booking, designed the database tables and forms with IT, tested the workflow with the team, and trained the agents on how to use it alongside the reservation system.</p>
+
+    <h2>Outcome</h2>
+    <ul>
+      <li>Agents stopped retyping passport and frequent flyer numbers from memory or paper files.</li>
+      <li>Booking errors from mistyped client information dropped.</li>
+      <li>New agents got up to speed faster because client details were stored, not memorized.</li>
+      <li>The team kept using the fast GDS interface while adding a simple modern layer for data entry.</li>
+    </ul>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-slate-200">
+    <p class="text-sm text-slate-500 mb-4">Tags:</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">legacy-systems</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">data-entry</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">operations</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">travel-technology</span>
+    </div>
+  </div>
+
+  <footer class="mt-16 pt-8 border-t border-slate-200">
+    <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 transition-colors">← Back to Work</a>
+  </footer>
+</article>
+
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-200 flex items-center justify-center text-brand-600 font-bold text-sm mono">K°</span>
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
