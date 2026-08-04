@@ -293,113 +293,134 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 //    - If a card is labeled "Pinned" or has data-format pinned, it goes first.
 //    - Otherwise prefer cards tagged with: systems-integration, workflow-automation, api-integration, unified-communications, benefits-admin.
 //    - Then fallback to first cards in DOM order.
-// 2. Latest idea: parse /ideas/index.html tiles. Pick the tile with the highest Issue number.
-(async function() {
-  try {
-    const [workRes, ideasRes] = await Promise.all([
-      fetch('/work/index.html'),
-      fetch('/ideas/index.html')
-    ]);
-    const [workHtml, ideasHtml] = await Promise.all([workRes.text(), ideasRes.text()]);
+// 2. Latest idea: parse /ideas/index.html tiles. Take the 3 highest Issue numbers, randomly pick 2, render as thumbnail cards with muted->highlighted hover.
+(function() {
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+    return arr;
+  }
 
-    // Parse work cards
-    const workParser = new DOMParser();
-    const workDoc = workParser.parseFromString(workHtml, 'text/html');
-    const workCards = Array.from(workDoc.querySelectorAll('#work-grid .tile'));
+  function load() {
+    Promise.all([
+      fetch('/work/index.html').then(function(r) { return r.text(); }),
+      fetch('/ideas/index.html').then(function(r) { return r.text(); })
+    ]).then(function(results) {
+      var workHtml = results[0];
+      var ideasHtml = results[1];
 
-    const priorityTags = ['systems-integration', 'workflow-automation', 'api-integration', 'unified-communications', 'benefits-admin'];
+      // Parse work cards
+      var workDoc = new DOMParser().parseFromString(workHtml, 'text/html');
+      var workCards = Array.from(workDoc.querySelectorAll('#work-grid .tile'));
+      var priorityTags = ['systems-integration', 'workflow-automation', 'api-integration', 'unified-communications', 'benefits-admin'];
 
-    const scoredCards = workCards.map(card => {
-      const link = card.querySelector('a[href^="/work/"]');
-      const href = link ? link.getAttribute('href') : '#';
-      const title = link ? link.querySelector('h2')?.textContent.trim() : '';
-      const summary = link ? link.querySelector('p')?.textContent.trim() : '';
-      const formatLabel = card.querySelector('span.mono.text-xs.text-slate-600.bg-slate-100')?.textContent.trim() || 'Work';
-      const tags = (card.dataset.tags || '').split(' ').filter(Boolean);
-      const isPinned = formatLabel.toLowerCase().includes('pinned') || card.dataset.format === 'pinned';
-      let score = isPinned ? 1000 : 0;
-      tags.forEach(tag => {
-        const idx = priorityTags.indexOf(tag);
-        if (idx !== -1) score += (priorityTags.length - idx) * 10;
+      var scoredCards = workCards.map(function(card) {
+        var link = card.querySelector('a[href^="/work/"]');
+        var href = link ? link.getAttribute('href') : '#';
+        var titleEl = link ? link.querySelector('h2') : null;
+        var title = titleEl ? titleEl.textContent.trim() : '';
+        var summaryEl = link ? link.querySelector('p') : null;
+        var summary = summaryEl ? summaryEl.textContent.trim() : '';
+        var formatEl = card.querySelector('span.mono.text-xs.text-slate-600.bg-slate-100');
+        var formatLabel = formatEl ? formatEl.textContent.trim() : 'Work';
+        var tags = (card.dataset.tags || '').split(' ').filter(Boolean);
+        var isPinned = formatLabel.toLowerCase().indexOf('pinned') !== -1 || card.dataset.format === 'pinned';
+        var score = isPinned ? 1000 : 0;
+        tags.forEach(function(tag) {
+          var idx = priorityTags.indexOf(tag);
+          if (idx !== -1) score += (priorityTags.length - idx) * 10;
+        });
+        return { href: href, title: title, summary: summary, formatLabel: formatLabel, tags: tags, score: score };
       });
-      return { href, title, summary, formatLabel, tags, score };
+
+      scoredCards.sort(function(a, b) { return b.score - a.score; });
+      var selectedWork = scoredCards.slice(0, 3);
+
+      var workContainer = document.getElementById('featured-work');
+      if (selectedWork.length && workContainer) {
+        workContainer.innerHTML = selectedWork.map(function(item) {
+          var tagHtml = item.tags.slice(0, 3).map(function(t) {
+            return '<span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">' + t + '</span>';
+          }).join('');
+          return [
+            '<a href="' + item.href + '" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">',
+            '  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">',
+            '    <div class="flex items-center gap-3">',
+            '      <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">' + item.formatLabel + '</span>',
+            '      <span class="mono text-xs text-slate-500">Project</span>',
+            '    </div>',
+            '    <div class="flex flex-wrap gap-2">' + tagHtml + '</div>',
+            '  </div>',
+            '  <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">' + item.title + '</h3>',
+            '  <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">' + item.summary + '</p>',
+            '</a>'
+          ].join('\n');
+        }).join('\n');
+      } else {
+        var fb = document.getElementById('featured-work-fallback');
+        if (fb) fb.classList.remove('hidden');
+      }
+
+      // Parse latest ideas
+      var ideasDoc = new DOMParser().parseFromString(ideasHtml, 'text/html');
+      var ideaTiles = Array.from(ideasDoc.querySelectorAll('.idea-tile'));
+
+      var parsedIdeas = ideaTiles.map(function(tile) {
+        var issueEl = tile.querySelector('.mono.text-brand-600, .mono.text-xs.text-brand-600');
+        var issueText = issueEl ? issueEl.textContent.trim() : '';
+        var issueNum = parseInt(issueText.replace(/\D/g, ''), 10) || 0;
+        var link = tile.querySelector('a[href^="/ideas/"]');
+        var href = link ? link.getAttribute('href') : '#';
+        var mutedImg = link ? link.querySelector('img[src*="-muted.png"]') : null;
+        var highlightImg = link ? link.querySelector('img:not([src*="-muted.png"])') : null;
+        var mutedSrc = mutedImg ? mutedImg.getAttribute('src') : '';
+        var highlightSrc = highlightImg ? highlightImg.getAttribute('src') : '';
+        return { issueNum: issueNum, href: href, mutedSrc: mutedSrc, highlightSrc: highlightSrc };
+      });
+
+      parsedIdeas.sort(function(a, b) { return b.issueNum - a.issueNum; });
+      var top3 = parsedIdeas.slice(0, 3);
+      var selectedIdeas = shuffle(top3).slice(0, 2);
+
+      var ideaContainer = document.getElementById('latest-idea');
+      if (selectedIdeas.length && ideaContainer) {
+        ideaContainer.innerHTML = [
+          '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">',
+          selectedIdeas.map(function(idea) {
+            return [
+              '  <a href="' + idea.href + '" class="home-idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">',
+              '    <div class="aspect-square overflow-hidden bg-slate-100">',
+              '      <div class="relative aspect-square overflow-hidden">',
+              '        <img src="' + idea.mutedSrc + '" class="absolute inset-0 w-full h-full object-cover" alt="">',
+              '        <img src="' + idea.highlightSrc + '" class="absolute inset-0 w-full h-full object-cover opacity-0" alt="">',
+              '      </div>',
+              '    </div>',
+              '  </a>'
+            ].join('\n');
+          }).join('\n'),
+          '</div>'
+        ].join('\n');
+      } else {
+        var ifb = document.getElementById('latest-idea-fallback');
+        if (ifb) ifb.classList.remove('hidden');
+      }
+    }).catch(function(e) {
+      console.error('Failed to load dynamic feed:', e);
+      var fb = document.getElementById('featured-work-fallback');
+      var ifb = document.getElementById('latest-idea-fallback');
+      if (fb) fb.classList.remove('hidden');
+      if (ifb) ifb.classList.remove('hidden');
     });
+  }
 
-    scoredCards.sort((a, b) => b.score - a.score);
-    const selectedWork = scoredCards.slice(0, 3);
-
-    const workContainer = document.getElementById('featured-work');
-    if (selectedWork.length && workContainer) {
-      workContainer.innerHTML = selectedWork.map(item => {
-        const tagHtml = item.tags.slice(0, 3).map(t => `<span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">${t}</span>`).join('');
-        return `
-          <a href="${item.href}" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-              <div class="flex items-center gap-3">
-                <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">${item.formatLabel}</span>
-                <span class="mono text-xs text-slate-500">Project</span>
-              </div>
-              <div class="flex flex-wrap gap-2">${tagHtml}</div>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">${item.title}</h3>
-            <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">${item.summary}</p>
-          </a>
-        `;
-      }).join('');
-    } else {
-      document.getElementById('featured-work-fallback')?.classList.remove('hidden');
-    }
-
-    // Latest idea rules:
-    // - Take the 3 tiles with the highest Issue numbers.
-    // - Randomly pick 2 of those 3.
-    // - Render them as actual idea cards with thumbnail + muted→highlighted hover.
-    const parsedIdeas = ideaTiles.map(tile => {
-      const issueEl = tile.querySelector('.mono.text-brand-600, .mono.text-xs.text-brand-600');
-      const issueText = issueEl ? issueEl.textContent.trim() : '';
-      const issueNum = parseInt(issueText.replace(/\D/g, ''), 10) || 0;
-      const link = tile.querySelector('a[href^="/ideas/"]');
-      const href = link ? link.getAttribute('href') : '#';
-      const mutedImg = link?.querySelector('img[src*="-muted.png"]');
-      const highlightImg = link?.querySelector('img:not([src*="-muted.png"])');
-      const mutedSrc = mutedImg ? mutedImg.getAttribute('src') : '';
-      const highlightSrc = highlightImg ? highlightImg.getAttribute('src') : '';
-      return { issueNum, href, mutedSrc, highlightSrc, issueText };
-    });
-
-    parsedIdeas.sort((a, b) => b.issueNum - a.issueNum);
-    const top3 = parsedIdeas.slice(0, 3);
-
-    // Shuffle and pick 2
-    for (let i = top3.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [top3[i], top3[j]] = [top3[j], top3[i]];
-    }
-    const selectedIdeas = top3.slice(0, 2);
-
-    const ideaContainer = document.getElementById('latest-idea');
-    if (selectedIdeas.length && ideaContainer) {
-      ideaContainer.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          ${selectedIdeas.map(idea => `
-            <a href="${idea.href}" class="home-idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">
-              <div class="aspect-square overflow-hidden bg-slate-100">
-                <div class="relative aspect-square overflow-hidden">
-                  <img src="${idea.mutedSrc}" class="absolute inset-0 w-full h-full object-cover" alt="">
-                  <img src="${idea.highlightSrc}" class="absolute inset-0 w-full h-full object-cover opacity-0" alt="">
-                </div>
-              </div>
-            </a>
-          `).join('')}
-        </div>
-      `;
-    } else {
-      document.getElementById('latest-idea-fallback')?.classList.remove('hidden');
-    }
-  } catch (e) {
-    console.error('Failed to load dynamic feed:', e);
-    document.getElementById('featured-work-fallback')?.classList.remove('hidden');
-    document.getElementById('latest-idea-fallback')?.classList.remove('hidden');
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load);
+  } else {
+    load();
   }
 })();
 </script>
