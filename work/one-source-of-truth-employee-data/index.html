@@ -72,22 +72,22 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 
   <div class="prose">
     <h2>What they had</h2>
-    <p>The company had recently implemented its first HRIS. Before that, employee information lived in an internal database built over time. The database was limited to whatever data the onboarding team had entered at the time of hire. There was no process for employees to review or update their own records afterward, so addresses, dependents, tax forms, and banking details drifted out of date quickly.</p>
+    <p>The company had just implemented its first HRIS. Before that, employee information lived in an internal database backed by a web application. The database was limited to whatever data the onboarding team had entered at the time of hire. There was no process for employees to review or update their own records afterward, so addresses, dependents, tax forms, and banking details drifted out of date quickly.</p>
 
-    <p>Payroll ran from the same HRIS, but HRIS and payroll were not truly connected as one workflow. Employment data was entered into the HRIS once, then the onboarding team had to maintain a separate internal database with overlapping information. After the HRIS went live, the situation did not improve immediately. The same facts existed in two places, and the two versions did not always match.</p>
+    <p>Payroll ran from a separate accounting system. That meant the company had two disconnected sources for employee information: the internal web app for personal and employment details, and the accounting system for pay. Reconciling them was a manual exercise.</p>
 
     <h2>What broke</h2>
-    <p>The setup created several predictable problems. First, onboarding spent extra time entering the same information twice. Second, discrepancies between the HRIS and the internal database caused errors that needed correction. Third, employees could not correct their own data, so mistakes stayed in the system until someone else noticed them. Fourth, downstream workflows — access provisioning, benefits enrollment, document generation, time tracking reconciliation — could not trust either source because neither was complete.</p>
+    <p>The setup created several predictable problems. First, onboarding spent extra time entering data into both systems. Second, discrepancies between the internal web app and the accounting system caused payroll errors and corrections. Third, employees could not correct their own data, so mistakes stayed in the system until someone else noticed them. Fourth, downstream workflows — access provisioning, benefits enrollment, document generation, time tracking reconciliation — could not trust either source because neither was complete.</p>
 
-    <p>The deeper issue was that employment data had no single owner. The HRIS was supposed to be the source of truth, but onboarding still maintained the old database to support processes the HRIS had not yet reached. Until the HRIS became the actual starting point for every workflow, every downstream process had to reconcile the difference by hand.</p>
+    <p>The deeper issue was that employment data had no single owner. The internal web app was supposed to hold employee records, but payroll relied on the accounting system. Until those systems agreed on one record, every downstream process had to reconcile the difference by hand.</p>
 
     <h2>What we chose</h2>
-    <p>I proposed an API integration so the HRIS could become the single source of truth for employee data. The goal was to eliminate the need for the onboarding team to maintain multiple records and to make HRIS changes useful across the organization.</p>
+    <p>We chose a full HRIS implementation to replace both the internal employee database and the accounting-system payroll. The new HRIS became the single system for employee data and payroll. Then I proposed an API integration so the HRIS could feed clean, current employee data back to the internal web app and other downstream systems.</p>
 
     <p>The design had four principles:</p>
     <ul>
       <li><strong>One entry point.</strong> The onboarding team enters employment data only in the HRIS.</li>
-      <li><strong>No re-entry.</strong> Payroll receives the same record through an automated feed.</li>
+      <li><strong>No re-entry.</strong> Payroll runs from the same HRIS record, and the internal web app receives updates through an automated feed.</li>
       <li><strong>Employee self-service.</strong> Employees update their own personal details in the HRIS, reducing stale information.</li>
       <li><strong>Triggers downstream work.</strong> Changes in employment status start access, benefits, document, and time-tracking workflows.</li>
     </ul>
@@ -95,17 +95,17 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     <p>The integration also made it possible to compare data across systems. For example, clock-in data from the HRIS could be matched against time-tracking records from other tools. Discrepancies could be flagged automatically instead of being caught during manual payroll review.</p>
 
     <h2>My role</h2>
-    <p>I gathered employee feedback, mapped the current data flow, identified where information was being re-entered, and built the business case for the integration. I worked with the HRIS, payroll, and operations teams to design the API touchpoints, define the data fields, and agree on error handling. I also helped the onboarding team transition to a single-entry process, set up self-service access for employees, and trained them on validation rules so the source data stayed clean.</p>
+    <p>I gathered employee feedback, mapped the current data flow between the internal web app and the accounting system, and built the business case for moving both employee data and payroll into the HRIS. I worked with the HRIS, payroll, and operations teams to design the API touchpoints, define the data fields, and agree on error handling. I also helped the onboarding team transition to a single-entry process, set up self-service access for employees, and trained them on validation rules so the source data stayed clean.</p>
 
     <h2>Why this matters</h2>
-    <p>This project was about more than connecting two systems. It was about stopping people from acting as messengers between systems. When employment data has to be carried by hand from one platform to another, errors and delays are inevitable. The integration made the system the messenger, which is the core idea behind Issue 002 on this site: stop people from being messengers.</p>
+    <p>This project was about more than switching systems. It was about stopping people from acting as messengers between systems. When employment data has to be carried by hand from one platform to another, errors and delays are inevitable. The integration made the HRIS the messenger, which is the core idea behind Issue 002 on this site: stop people from being messengers.</p>
 
     <p>All employment changes should start in the HRIS and trigger the rest. That is what makes the workflow scalable, auditable, and ready for automation.</p>
 
     <h2>Outcome</h2>
     <ul>
-      <li>Employment data now has one entry point in the HRIS.</li>
-      <li>Payroll and other downstream systems receive the same record automatically, reducing re-entry and mismatches.</li>
+      <li>Employee data and payroll now live in the same HRIS.</li>
+      <li>The internal web app and other downstream systems receive the same record automatically, reducing re-entry and mismatches.</li>
       <li>Employees can update their own personal details, so records stay current.</li>
       <li>Access, benefits, document, and time-tracking workflows are triggered by HRIS changes.</li>
     </ul>
