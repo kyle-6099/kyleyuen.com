@@ -252,13 +252,50 @@ let currentTagFilter = 'all';
 let currentFormatFilter = 'all';
 
 function applyFilters() {
-workItems.forEach(item => {
-  const tags = item.dataset.tags || '';
-  const format = item.dataset.format || '';
-  const tagMatch = currentTagFilter === 'all' || tags.includes(currentTagFilter);
-  const formatMatch = currentFormatFilter === 'all' || format === currentFormatFilter;
-  item.style.display = (tagMatch && formatMatch) ? 'flex' : 'none';
-});
+  workItems.forEach(item => {
+    const tags = item.dataset.tags || '';
+    const format = item.dataset.format || '';
+    const tagMatch = currentTagFilter === 'all' || tags.includes(currentTagFilter);
+    const formatMatch = currentFormatFilter === 'all' || format === currentFormatFilter;
+    item.style.display = (tagMatch && formatMatch) ? 'flex' : 'none';
+  });
+  updateFilterVisibility();
+}
+
+function updateFilterVisibility() {
+  const visibleTags = new Set();
+  const visibleFormats = new Set();
+
+  workItems.forEach(item => {
+    if (item.style.display === 'none') return;
+    const tags = (item.dataset.tags || '').split(' ').filter(Boolean);
+    tags.forEach(t => visibleTags.add(t));
+    const format = item.dataset.format;
+    if (format) visibleFormats.add(format);
+  });
+
+  filterBtns.forEach(btn => {
+    const filterType = btn.dataset.filterType;
+    const filterValue = btn.dataset.filter;
+
+    if (filterValue === 'all') {
+      btn.style.display = '';
+      return;
+    }
+
+    if (filterType === 'tag') {
+      const hasMatch = currentFormatFilter === 'all'
+        ? visibleTags.has(filterValue)
+        : Array.from(workItems).some(item => {
+            const itemFormat = item.dataset.format || '';
+            const itemTags = item.dataset.tags || '';
+            return item.style.display !== 'none' && itemFormat === currentFormatFilter && itemTags.includes(filterValue);
+          });
+      btn.style.display = hasMatch ? '' : 'none';
+    } else if (filterType === 'format') {
+      btn.style.display = visibleFormats.has(filterValue) ? '' : 'none';
+    }
+  });
 }
 
 filterBtns.forEach(btn => {
