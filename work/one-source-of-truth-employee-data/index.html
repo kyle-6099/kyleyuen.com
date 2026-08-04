@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Source of Truth for Employee Data — Kyle Yuen</title>
+<meta name="description" content="Proposing an HRIS-to-payroll API integration so employment data starts in the HRIS once and triggers downstream workflows automatically.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+html { overflow-y: scroll; }
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+</style>
+</head>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
+<div class="content">
+
+<nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-slate-200/50 px-6 py-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-600 font-bold text-lg mono">K°</span>
+        <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+        <a href="/ideas" class="text-slate-600 hover:text-slate-900 transition-colors">Ideas</a>
+        <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-20 pb-24">
+  <header class="mb-10">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Work</span>
+      <span class="mono text-xs text-slate-500">HR Systems / Payroll</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">One Source of Truth for Employee Data</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">Proposing an HRIS-to-payroll API integration so employment data starts in one place and triggers downstream workflows automatically.</p>
+  </header>
+
+  <div class="prose">
+    <h2>What they had</h2>
+    <p>The company had recently implemented its first HRIS. Before that, employee information lived in an internal database built over time. The database was messy, incomplete, and not kept current. New hire details were entered by the onboarding team, but there was no standard format and no validation. Names, addresses, compensation, and start dates could differ depending on who entered them and when.</p>
+
+    <p>After the HRIS went live, the situation did not improve immediately. The onboarding team now had two places to maintain the same information. They entered data into the HRIS, then re-entered or adjusted it in the separate internal database so payroll could run. The same facts existed in two systems, and the two versions did not always match.</p>
+
+    <h2>What broke</h2>
+    <p>The duplication created four predictable problems. First, onboarding spent extra time entering the same information twice. Second, discrepancies between the systems caused payroll errors and corrections. Third, downstream workflows — access provisioning, benefits enrollment, document generation — could not trust either source. Fourth, the data was being entered but not used well. It sat in systems without triggering anything useful.</p>
+
+    <p>The deeper issue was that employment data had no single owner. The HRIS was supposed to be the source of truth, but payroll still relied on the old database. Until those two systems agreed on one record, every downstream process had to reconcile the difference.</p>
+
+    <h2>What we chose</h2>
+    <p>I proposed connecting the HRIS and the payroll system through an API integration. The goal was simple: all employment data should start and end in the HRIS. A new hire, promotion, termination, or address change entered once would flow automatically to payroll and trigger the next steps in the workflow.</p>
+
+    <p>The design had three principles:</p>
+    <ul>
+      <li><strong>One entry point.</strong> The onboarding team enters employment data only in the HRIS.</li>
+      <li><strong>No re-entry.</strong> Payroll receives the same record through an automated feed.</li>
+      <li><strong>Triggers downstream work.</strong> Changes in employment status automatically start access, benefits, and document workflows.</li>
+    </ul>
+
+    <h2>My role</h2>
+    <p>I mapped the current data flow, identified where information was being re-entered, and built the business case for the integration. I worked with the HRIS and payroll teams to design the API touchpoints, define the data fields, and agree on error handling. I also helped the onboarding team transition to a single-entry process and trained them on validation rules so the source data stayed clean.</p>
+
+    <h2>Why this matters</h2>
+    <p>This project was about more than connecting two systems. It was about stopping people from acting as messengers between systems. When employment data has to be carried by hand from one platform to another, errors and delays are inevitable. The integration made the system the messenger, which is the core idea behind Issue 002 on this site: stop people from being messengers.</p>
+
+    <p>All employment changes should start in the HRIS and trigger the rest. That is what makes the workflow scalable, auditable, and ready for automation.</p>
+
+    <h2>Outcome</h2>
+    <ul>
+      <li>Employment data now has one entry point in the HRIS.</li>
+      <li>Payroll receives the same record automatically, reducing re-entry and mismatches.</li>
+      <li>Downstream workflows are triggered by HRIS changes instead of manual handoffs.</li>
+      <li>Onboarding saves time and the data quality they produce is now trusted across teams.</li>
+    </ul>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-slate-200">
+    <p class="text-sm text-slate-500 mb-4">Tags:</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">hris-integration</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">payroll</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">workflow-automation</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">employee-data</span>
+    </div>
+  </div>
+
+  <footer class="mt-16 pt-8 border-t border-slate-200">
+    <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 transition-colors">← Back to Work</a>
+  </footer>
+</article>
+
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-200 flex items-center justify-center text-brand-600 font-bold text-sm mono">K°</span>
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
