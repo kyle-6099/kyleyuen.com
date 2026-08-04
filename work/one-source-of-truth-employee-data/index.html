@@ -77,7 +77,12 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     <p>Payroll ran from a separate accounting system. That meant the company had two disconnected sources for employee information: the internal web app for personal and employment details, and the accounting system for pay. Reconciling them was a manual exercise.</p>
 
     <h2>What broke</h2>
-    <p>The setup created several predictable problems. First, onboarding spent extra time entering data into both systems. Second, discrepancies between the internal web app and the accounting system caused payroll errors and corrections. Third, employees could not correct their own data, so mistakes stayed in the system until someone else noticed them. Fourth, downstream workflows — access provisioning, benefits enrollment, document generation, time tracking reconciliation — could not trust either source because neither was complete.</p>
+    <ul>
+      <li><strong>Double entry.</strong> Onboarding spent extra time entering data into both the internal web app and the accounting system.</li>
+      <li><strong>Payroll errors.</strong> Discrepancies between the two systems caused pay mistakes and corrections.</li>
+      <li><strong>Stale employee data.</strong> Employees could not update their own records, so mistakes stayed until someone else noticed them.</li>
+      <li><strong>Downstream workflows could not trust either source.</strong> Access, benefits, documents, and time tracking had to reconcile incomplete data by hand.</li>
+    </ul>
 
     <p>The deeper issue was that employment data had no single owner. The internal web app was supposed to hold employee records, but payroll relied on the accounting system. Until those systems agreed on one record, every downstream process had to reconcile the difference by hand.</p>
 
