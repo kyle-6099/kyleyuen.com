@@ -306,18 +306,10 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
   }
 
   function load() {
-    var stage = function(msg) {
-      var d = document.createElement('div');
-      d.style.cssText = 'padding:8px 16px;background:#fef3c7;color:#92400e;font-family:monospace;font-size:12px;';
-      d.textContent = msg;
-      document.body.appendChild(d);
-    };
-    stage('Feed: load() started');
     Promise.all([
       fetch('/work/index.html').then(function(r) { return r.text(); }),
       fetch('/ideas/index.html').then(function(r) { return r.text(); })
     ]).then(function(results) {
-      stage('Feed: fetch succeeded');
       var workHtml = results[0];
       var ideasHtml = results[1];
 
@@ -397,37 +389,28 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
       parsedIdeas.sort(function(a, b) { return b.issueNum - a.issueNum; });
       var top3 = parsedIdeas.slice(0, 3);
       var selectedIdeas = shuffle(top3).slice(0, 2);
-      console.log('Parsed ideas:', JSON.stringify(parsedIdeas));
-      console.log('Selected ideas:', JSON.stringify(selectedIdeas));
 
       var ideaContainer = document.getElementById('latest-idea');
       if (selectedIdeas.length && ideaContainer) {
-        ideaContainer.innerHTML = [
-          '<div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center max-w-4xl mx-auto">',
-          selectedIdeas.map(function(idea) {
-            return [
-              '  <a href="' + idea.href + '" class="home-idea-tile glass rounded-xl overflow-hidden flex flex-col bg-white max-w-sm">',
-              '    <div class="aspect-square overflow-hidden bg-slate-100">',
-              '      <div class="relative w-full h-full overflow-hidden">',
-              '        <img src="' + idea.mutedSrc + '" class="absolute inset-0 w-full h-full object-cover" alt="">',
-              '        <img src="' + idea.highlightSrc + '" class="absolute inset-0 w-full h-full object-cover opacity-0" alt="">',
-              '      </div>',
-              '    </div>',
-              '  </a>'
-            ].join('\n');
-          }).join('\n'),
-          '</div>'
-        ].join('\n');
+        var tilesHtml = selectedIdeas.map(function(idea) {
+          return [
+            '<a href="' + idea.href + '" class="home-idea-tile block">',
+            '  <div class="aspect-square overflow-hidden bg-slate-100 rounded-2xl">',
+            '    <div class="relative aspect-square overflow-hidden">',
+            '      <img src="' + idea.mutedSrc + '" class="absolute inset-0 w-full h-full object-cover" alt="' + idea.title + '">',
+            '      <img src="' + idea.highlightSrc + '" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 ease-out" alt="' + idea.title + '">',
+            '    </div>',
+            '  </div>',
+            '</a>'
+          ].join('\n');
+        }).join('\n');
+        ideaContainer.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">' + tilesHtml + '</div>';
       } else {
         var ifb = document.getElementById('latest-idea-fallback');
         if (ifb) ifb.classList.remove('hidden');
       }
     }).catch(function(e) {
       console.error('Failed to load dynamic feed:', e);
-      var debug = document.createElement('div');
-      debug.style.cssText = 'padding:20px;background:#fee;color:#900;font-family:monospace;white-space:pre-wrap;';
-      debug.textContent = 'Feed error: ' + (e && e.message ? e.message : String(e));
-      document.body.appendChild(debug);
       var fb = document.getElementById('featured-work-fallback');
       var ifb = document.getElementById('latest-idea-fallback');
       if (fb) fb.classList.remove('hidden');
