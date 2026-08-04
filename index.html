@@ -379,7 +379,11 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
         var highlightImg = link ? link.querySelector('img:not([src*="-muted.png"])') : null;
         var mutedSrc = mutedImg ? mutedImg.getAttribute('src') : '';
         var highlightSrc = highlightImg ? highlightImg.getAttribute('src') : '';
-        return { issueNum: issueNum, href: href, mutedSrc: mutedSrc, highlightSrc: highlightSrc };
+        var title = mutedImg ? (mutedImg.getAttribute('alt') || '') : '';
+        if (!title) {
+          title = tile.getAttribute('data-title') || '';
+        }
+        return { issueNum: issueNum, href: href, mutedSrc: mutedSrc, highlightSrc: highlightSrc, title: title };
       });
 
       parsedIdeas.sort(function(a, b) { return b.issueNum - a.issueNum; });
@@ -392,12 +396,15 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
           '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">',
           selectedIdeas.map(function(idea) {
             return [
-              '  <a href="' + idea.href + '" class="home-idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">',
-              '    <div class="aspect-square overflow-hidden bg-slate-100">',
-              '      <div class="relative aspect-square overflow-hidden">',
+              '  <a href="' + idea.href + '" class="home-idea-tile glass rounded-xl overflow-hidden flex flex-col bg-white">',
+              '    <div class="aspect-[4/3] overflow-hidden bg-slate-100">',
+              '      <div class="relative w-full h-full overflow-hidden">',
               '        <img src="' + idea.mutedSrc + '" class="absolute inset-0 w-full h-full object-cover" alt="">',
               '        <img src="' + idea.highlightSrc + '" class="absolute inset-0 w-full h-full object-cover opacity-0" alt="">',
               '      </div>',
+              '    </div>',
+              '    <div class="p-4">',
+              '      <h3 class="text-base font-semibold text-slate-900 leading-snug">' + idea.title + '</h3>',
               '    </div>',
               '  </a>'
             ].join('\n');
