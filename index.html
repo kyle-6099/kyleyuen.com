@@ -389,6 +389,8 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
       parsedIdeas.sort(function(a, b) { return b.issueNum - a.issueNum; });
       var top3 = parsedIdeas.slice(0, 3);
       var selectedIdeas = shuffle(top3).slice(0, 2);
+      console.log('Parsed ideas:', JSON.stringify(parsedIdeas));
+      console.log('Selected ideas:', JSON.stringify(selectedIdeas));
 
       var ideaContainer = document.getElementById('latest-idea');
       if (selectedIdeas.length && ideaContainer) {
