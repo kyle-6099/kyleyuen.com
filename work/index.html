@@ -68,23 +68,28 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
   </div>
 
   <!-- Filter bar -->
-  <div class="flex flex-wrap gap-2 mb-10">
-    <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="all" data-filter-type="tag">all</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="workflow-automation" data-filter-type="tag">workflow-automation</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="systems-integration" data-filter-type="tag">systems-integration</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="api-integration" data-filter-type="tag">api-integration</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="data-cleanup" data-filter-type="tag">data-cleanup</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="process-redesign" data-filter-type="tag">process-redesign</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="change-management" data-filter-type="tag">change-management</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-experience" data-filter-type="tag">employee-experience</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="benefits-admin" data-filter-type="tag">benefits-admin</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="unified-communications" data-filter-type="tag">unified-communications</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="tool-selection" data-filter-type="tag">tool-selection</button>
-    <span class="w-px h-6 bg-slate-300 mx-1 self-center"></span>
-    
-    <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="case-study" data-filter-type="format">Case Study</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="implementation-log" data-filter-type="format">Implementation Log</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="tool-review" data-filter-type="format">Tool Review</button>
+  <div class="flex flex-col gap-3 mb-10">
+    <!-- Tag filters -->
+    <div class="flex flex-wrap gap-2">
+      <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="all" data-filter-type="tag">all</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="workflow-automation" data-filter-type="tag">workflow-automation</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="systems-integration" data-filter-type="tag">systems-integration</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="api-integration" data-filter-type="tag">api-integration</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="data-cleanup" data-filter-type="tag">data-cleanup</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="process-redesign" data-filter-type="tag">process-redesign</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="change-management" data-filter-type="tag">change-management</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-experience" data-filter-type="tag">employee-experience</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="benefits-admin" data-filter-type="tag">benefits-admin</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="unified-communications" data-filter-type="tag">unified-communications</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="tool-selection" data-filter-type="tag">tool-selection</button>
+    </div>
+
+    <!-- Format filters -->
+    <div class="flex flex-wrap gap-2">
+      <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="case-study" data-filter-type="format">Case Study</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="implementation-log" data-filter-type="format">Implementation Log</button>
+      <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="tool-review" data-filter-type="format">Tool Review</button>
+    </div>
   </div>
 
   <style>
