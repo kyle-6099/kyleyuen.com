@@ -99,6 +99,22 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 .prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
 .prose li { margin-bottom: 0.5em; }
 .prose strong { color: #1e293b; }
+
+.home-idea-tile {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.home-idea-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99,102,241,0.4);
+  box-shadow: 0 24px 70px -30px rgba(99,102,241,0.18);
+}
+.home-idea-tile .relative img:last-child {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.home-idea-tile:hover .relative img:last-child {
+  opacity: 1;
+}
 </style>
 </head>
 <body class="text-slate-700 antialiased">
@@ -334,37 +350,48 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
       document.getElementById('featured-work-fallback')?.classList.remove('hidden');
     }
 
-    // Parse latest idea
-    const ideasParser = new DOMParser();
-    const ideasDoc = ideasParser.parseFromString(ideasHtml, 'text/html');
-    const ideaTiles = Array.from(ideasDoc.querySelectorAll('.idea-tile'));
-
+    // Latest idea rules:
+    // - Take the 3 tiles with the highest Issue numbers.
+    // - Randomly pick 2 of those 3.
+    // - Render them as actual idea cards with thumbnail + muted→highlighted hover.
     const parsedIdeas = ideaTiles.map(tile => {
       const issueEl = tile.querySelector('.mono.text-brand-600, .mono.text-xs.text-brand-600');
       const issueText = issueEl ? issueEl.textContent.trim() : '';
       const issueNum = parseInt(issueText.replace(/\D/g, ''), 10) || 0;
       const link = tile.querySelector('a[href^="/ideas/"]');
       const href = link ? link.getAttribute('href') : '#';
-      const img = link?.querySelector('img[src*="-muted"], img[src$=".png"]');
-      const title = img ? img.getAttribute('alt') || '' : '';
-      const tags = Array.from(tile.querySelectorAll('.mono.text-xs.bg-slate-100')).map(el => el.textContent.trim()).filter(Boolean);
-      return { issueNum, href, title, tags, issueText };
+      const mutedImg = link?.querySelector('img[src*="-muted.png"]');
+      const highlightImg = link?.querySelector('img:not([src*="-muted.png"])');
+      const mutedSrc = mutedImg ? mutedImg.getAttribute('src') : '';
+      const highlightSrc = highlightImg ? highlightImg.getAttribute('src') : '';
+      return { issueNum, href, mutedSrc, highlightSrc, issueText };
     });
 
     parsedIdeas.sort((a, b) => b.issueNum - a.issueNum);
-    const latest = parsedIdeas[0];
+    const top3 = parsedIdeas.slice(0, 3);
+
+    // Shuffle and pick 2
+    for (let i = top3.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [top3[i], top3[j]] = [top3[j], top3[i]];
+    }
+    const selectedIdeas = top3.slice(0, 2);
 
     const ideaContainer = document.getElementById('latest-idea');
-    if (latest && ideaContainer) {
-      const topics = latest.tags.slice(0, 2).join(' · ') || 'Ideas';
+    if (selectedIdeas.length && ideaContainer) {
       ideaContainer.innerHTML = `
-        <a href="${latest.href}" class="glass rounded-2xl p-7 card-hover block group bg-white">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="mono text-xs text-brand-600">${latest.issueText}</span>
-            <span class="mono text-xs text-slate-500">${topics}</span>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">${latest.title}</h3>
-        </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          ${selectedIdeas.map(idea => `
+            <a href="${idea.href}" class="home-idea-tile glass rounded-2xl overflow-hidden flex flex-col bg-white">
+              <div class="aspect-square overflow-hidden bg-slate-100">
+                <div class="relative aspect-square overflow-hidden">
+                  <img src="${idea.mutedSrc}" class="absolute inset-0 w-full h-full object-cover" alt="">
+                  <img src="${idea.highlightSrc}" class="absolute inset-0 w-full h-full object-cover opacity-0" alt="">
+                </div>
+              </div>
+            </a>
+          `).join('')}
+        </div>
       `;
     } else {
       document.getElementById('latest-idea-fallback')?.classList.remove('hidden');
