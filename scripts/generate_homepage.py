@@ -145,7 +145,7 @@ def render_idea_tiles(tiles):
     selected = random.sample(top3, 2) if len(top3) >= 2 else top3
 
     tiles_html = "\n".join(
-        f'<a href="{escape(tile["href"])}" class="home-idea-tile block max-w-xs mx-auto">\n'
+        f'<a href="{escape(tile["href"])}" class="home-idea-tile block">\n'
         f'  <div class="aspect-square overflow-hidden bg-slate-100 rounded-2xl">\n'
         f'    <div class="relative aspect-square overflow-hidden">\n'
         f'      <img src="{escape(tile["muted_src"])}" class="absolute inset-0 w-full h-full object-cover" alt="{escape(tile["title"])}">\n'
@@ -155,7 +155,7 @@ def render_idea_tiles(tiles):
         f'</a>'
         for tile in selected
     )
-    return f'<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">\n{tiles_html}\n</div>'
+    return f'<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto px-8">\n{tiles_html}\n</div>'
 
 
 def insert_between(haystack: str, start_marker: str, end_marker: str, content: str) -> str:
