@@ -414,6 +414,10 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
       }
     }).catch(function(e) {
       console.error('Failed to load dynamic feed:', e);
+      var debug = document.createElement('div');
+      debug.style.cssText = 'padding:20px;background:#fee;color:#900;font-family:monospace;white-space:pre-wrap;';
+      debug.textContent = 'Feed error: ' + (e && e.message ? e.message : String(e));
+      document.body.appendChild(debug);
       var fb = document.getElementById('featured-work-fallback');
       var ifb = document.getElementById('latest-idea-fallback');
       if (fb) fb.classList.remove('hidden');
