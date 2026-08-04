@@ -192,54 +192,27 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     <a href="/work" class="hidden md:inline-flex items-center gap-1 text-sm text-brand-600 hover:text-brand-700 transition-colors">View all work →</a>
   </div>
   
-  <div class="space-y-4">
-    <a href="/work/role-zero/" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">
+  <div id="featured-work" class="space-y-4">
+    <!-- Populated by JS from /work/index.html -->
+  </div>
+  
+  <div id="featured-work-fallback" class="space-y-4 hidden">
+    <a href="/work/one-source-of-truth-employee-data/" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
         <div class="flex items-center gap-3">
-          <span class="mono text-xs text-brand-600 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-200">Pinned</span>
-          <span class="mono text-xs text-slate-500">Framework</span>
+          <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Case Study</span>
+          <span class="mono text-xs text-slate-500">HR Systems / Payroll</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">ai-agents</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">role-design</span>
+          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">workflow-automation</span>
+          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">systems-integration</span>
         </div>
       </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Atomic Role Decomposition for AI-Powered Operations</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">A framework for breaking work into atomic tasks, separating human judgment from automatable execution, and redesigning roles around collaboration rather than replacement.</p>
-    </a>
-    
-    <a href="/work/teams-phone-mobile/" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-        <div class="flex items-center gap-3">
-          <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Work</span>
-          <span class="mono text-xs text-slate-500">Telecom / UCaaS</span>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">microsoft-teams</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">mobile-integration</span>
-        </div>
-      </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Microsoft Teams Phone + Mobile</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">Rolled out company-wide Teams Phone with Teams Phone Mobile so field staff could answer call queue calls from their native dialer — one work number across Teams and mobile.</p>
-    </a>
-    
-    <a href="/work/multi-agent-hr-hub/" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-        <div class="flex items-center gap-3">
-          <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Work</span>
-          <span class="mono text-xs text-slate-500">AI Prototype</span>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">ai-agents</span>
-          <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">pii-governance</span>
-        </div>
-      </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Multi-Agent HR Hub-and-Spoke</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">Built a live prototype that routes HR requests to specialist agents while keeping sensitive information in the right context.</p>
+      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">One Source of Truth for Employee Data</h3>
+      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">Proposed an HRIS-to-payroll API integration so employment data starts in one place and triggers downstream workflows automatically.</p>
     </a>
   </div>
 </section>
-
 <!-- Latest idea -->
 <section class="border-y border-slate-200 bg-white/50 py-28">
   <div class="max-w-5xl mx-auto px-6">
@@ -251,17 +224,22 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
       <a href="/ideas" class="hidden md:inline-flex items-center gap-1 text-sm text-brand-600 hover:text-brand-700 transition-colors">Read all ideas →</a>
     </div>
     
-    <a href="/ideas/stop-people-being-messengers.html" class="glass rounded-2xl p-7 card-hover block group bg-white">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="mono text-xs text-brand-600">Issue 002</span>
-        <span class="mono text-xs text-slate-500">Automation · Operations</span>
-      </div>
-      <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Stop People From Being Messengers</h3>
-      <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">The real foundation of automation is not speed. It is removing unnecessary human-to-human information transport.</p>
-    </a>
+    <div id="latest-idea">
+      <!-- Populated by JS from /ideas/index.html -->
+    </div>
+    
+    <div id="latest-idea-fallback" class="hidden">
+      <a href="/ideas/stop-living-in-your-email.html" class="glass rounded-2xl p-7 card-hover block group bg-white">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="mono text-xs text-brand-600">Issue 006</span>
+          <span class="mono text-xs text-slate-500">Communication · Operations</span>
+        </div>
+        <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">Stop Living in Your Email</h3>
+        <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">Most email is information transport dressed up as communication. Project work belongs in project tools, and customer work belongs in CRM.</p>
+      </a>
+    </div>
   </div>
 </section>
-
 <!-- CTA -->
 <section class="max-w-5xl mx-auto px-6 py-28">
   <div class="glass rounded-3xl p-10 md:p-16 text-center bg-white relative overflow-hidden">
@@ -292,5 +270,112 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 
 </div>
 <script>lucide.createIcons();</script>
+
+<script>
+// Homepage dynamic feed rules:
+// 1. Featured work: parse /work/index.html cards. Pick up to 3 cards.
+//    - If a card is labeled "Pinned" or has data-format pinned, it goes first.
+//    - Otherwise prefer cards tagged with: systems-integration, workflow-automation, api-integration, unified-communications, benefits-admin.
+//    - Then fallback to first cards in DOM order.
+// 2. Latest idea: parse /ideas/index.html tiles. Pick the tile with the highest Issue number.
+(async function() {
+  try {
+    const [workRes, ideasRes] = await Promise.all([
+      fetch('/work/index.html'),
+      fetch('/ideas/index.html')
+    ]);
+    const [workHtml, ideasHtml] = await Promise.all([workRes.text(), ideasRes.text()]);
+
+    // Parse work cards
+    const workParser = new DOMParser();
+    const workDoc = workParser.parseFromString(workHtml, 'text/html');
+    const workCards = Array.from(workDoc.querySelectorAll('#work-grid .tile'));
+
+    const priorityTags = ['systems-integration', 'workflow-automation', 'api-integration', 'unified-communications', 'benefits-admin'];
+
+    const scoredCards = workCards.map(card => {
+      const link = card.querySelector('a[href^="/work/"]');
+      const href = link ? link.getAttribute('href') : '#';
+      const title = link ? link.querySelector('h2')?.textContent.trim() : '';
+      const summary = link ? link.querySelector('p')?.textContent.trim() : '';
+      const formatLabel = card.querySelector('span.mono.text-xs.text-slate-600.bg-slate-100')?.textContent.trim() || 'Work';
+      const tags = (card.dataset.tags || '').split(' ').filter(Boolean);
+      const isPinned = formatLabel.toLowerCase().includes('pinned') || card.dataset.format === 'pinned';
+      let score = isPinned ? 1000 : 0;
+      tags.forEach(tag => {
+        const idx = priorityTags.indexOf(tag);
+        if (idx !== -1) score += (priorityTags.length - idx) * 10;
+      });
+      return { href, title, summary, formatLabel, tags, score };
+    });
+
+    scoredCards.sort((a, b) => b.score - a.score);
+    const selectedWork = scoredCards.slice(0, 3);
+
+    const workContainer = document.getElementById('featured-work');
+    if (selectedWork.length && workContainer) {
+      workContainer.innerHTML = selectedWork.map(item => {
+        const tagHtml = item.tags.slice(0, 3).map(t => `<span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">${t}</span>`).join('');
+        return `
+          <a href="${item.href}" class="glass rounded-2xl p-6 md:p-8 card-hover block group bg-white">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+              <div class="flex items-center gap-3">
+                <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">${item.formatLabel}</span>
+                <span class="mono text-xs text-slate-500">Project</span>
+              </div>
+              <div class="flex flex-wrap gap-2">${tagHtml}</div>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">${item.title}</h3>
+            <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">${item.summary}</p>
+          </a>
+        `;
+      }).join('');
+    } else {
+      document.getElementById('featured-work-fallback')?.classList.remove('hidden');
+    }
+
+    // Parse latest idea
+    const ideasParser = new DOMParser();
+    const ideasDoc = ideasParser.parseFromString(ideasHtml, 'text/html');
+    const ideaTiles = Array.from(ideasDoc.querySelectorAll('.idea-tile'));
+
+    const parsedIdeas = ideaTiles.map(tile => {
+      const issueEl = tile.querySelector('.mono.text-brand-600, .mono.text-xs.text-brand-600');
+      const issueText = issueEl ? issueEl.textContent.trim() : '';
+      const issueNum = parseInt(issueText.replace(/\D/g, ''), 10) || 0;
+      const link = tile.querySelector('a[href^="/ideas/"]');
+      const href = link ? link.getAttribute('href') : '#';
+      const img = link?.querySelector('img[src*="-muted"], img[src$=".png"]');
+      const title = img ? img.getAttribute('alt') || '' : '';
+      const tags = Array.from(tile.querySelectorAll('.mono.text-xs.bg-slate-100')).map(el => el.textContent.trim()).filter(Boolean);
+      return { issueNum, href, title, tags, issueText };
+    });
+
+    parsedIdeas.sort((a, b) => b.issueNum - a.issueNum);
+    const latest = parsedIdeas[0];
+
+    const ideaContainer = document.getElementById('latest-idea');
+    if (latest && ideaContainer) {
+      const topics = latest.tags.slice(0, 2).join(' · ') || 'Ideas';
+      ideaContainer.innerHTML = `
+        <a href="${latest.href}" class="glass rounded-2xl p-7 card-hover block group bg-white">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="mono text-xs text-brand-600">${latest.issueText}</span>
+            <span class="mono text-xs text-slate-500">${topics}</span>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">${latest.title}</h3>
+        </a>
+      `;
+    } else {
+      document.getElementById('latest-idea-fallback')?.classList.remove('hidden');
+    }
+  } catch (e) {
+    console.error('Failed to load dynamic feed:', e);
+    document.getElementById('featured-work-fallback')?.classList.remove('hidden');
+    document.getElementById('latest-idea-fallback')?.classList.remove('hidden');
+  }
+})();
+</script>
+
 </body>
 </html>
