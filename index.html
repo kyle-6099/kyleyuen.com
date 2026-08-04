@@ -306,10 +306,18 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
   }
 
   function load() {
+    var stage = function(msg) {
+      var d = document.createElement('div');
+      d.style.cssText = 'padding:8px 16px;background:#fef3c7;color:#92400e;font-family:monospace;font-size:12px;';
+      d.textContent = msg;
+      document.body.appendChild(d);
+    };
+    stage('Feed: load() started');
     Promise.all([
       fetch('/work/index.html').then(function(r) { return r.text(); }),
       fetch('/ideas/index.html').then(function(r) { return r.text(); })
     ]).then(function(results) {
+      stage('Feed: fetch succeeded');
       var workHtml = results[0];
       var ideasHtml = results[1];
 
