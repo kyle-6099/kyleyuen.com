@@ -394,7 +394,7 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
       if (selectedIdeas.length && ideaContainer) {
         var tilesHtml = selectedIdeas.map(function(idea) {
           return [
-            '<a href="' + idea.href + '" class="home-idea-tile block">',
+            '<a href="' + idea.href + '" class="home-idea-tile block max-w-xs mx-auto">',
             '  <div class="aspect-square overflow-hidden bg-slate-100 rounded-2xl">',
             '    <div class="relative aspect-square overflow-hidden">',
             '      <img src="' + idea.mutedSrc + '" class="absolute inset-0 w-full h-full object-cover" alt="' + idea.title + '">',
@@ -402,9 +402,9 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
             '    </div>',
             '  </div>',
             '</a>'
-          ].join('\n');
-        }).join('\n');
-        ideaContainer.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">' + tilesHtml + '</div>';
+          ].join('\\n');
+        }).join('\\n');
+        ideaContainer.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">' + tilesHtml + '</div>';
       } else {
         var ifb = document.getElementById('latest-idea-fallback');
         if (ifb) ifb.classList.remove('hidden');
