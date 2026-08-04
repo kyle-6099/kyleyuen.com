@@ -69,26 +69,29 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 
   <!-- Filter bar -->
   <div class="flex flex-wrap gap-2 mb-10">
-    <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="all">all</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="microsoft-teams">microsoft-teams</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="ucaa">ucaa</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="mobile-integration">mobile-integration</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="it-strategy">it-strategy</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="workflow-automation">workflow-automation</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-implementation">hris-implementation</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="payroll">payroll</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-experience">employee-experience</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-integration">hris-integration</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-data">employee-data</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="benefits">benefits</button>
-    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="change-management">change-management</button>
+    <button class="filter-btn active mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="all" data-filter-type="tag">all</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="case-study" data-filter-type="format">case study</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="implementation-log" data-filter-type="format">implementation log</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="tool-review" data-filter-type="format">tool review</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="microsoft-teams" data-filter-type="tag">microsoft-teams</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="ucaa" data-filter-type="tag">ucaa</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="mobile-integration" data-filter-type="tag">mobile-integration</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="it-strategy" data-filter-type="tag">it-strategy</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="workflow-automation" data-filter-type="tag">workflow-automation</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-implementation" data-filter-type="tag">hris-implementation</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="payroll" data-filter-type="tag">payroll</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-experience" data-filter-type="tag">employee-experience</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="hris-integration" data-filter-type="tag">hris-integration</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="employee-data" data-filter-type="tag">employee-data</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="benefits" data-filter-type="tag">benefits</button>
+    <button class="filter-btn mono text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300" data-filter="change-management" data-filter-type="tag">change-management</button>
   </div>
 
   <!-- Work grid Option A: clean light cards, no dark images -->
   <div id="work-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
     <!-- One Source of Truth for Employee Data -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="hris-integration payroll workflow-automation employee-data">
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="hris-integration payroll workflow-automation employee-data" data-format="case-study">
       <div class="flex items-start justify-between mb-6">
         <div class="icon-box text-brand-600">
           <i data-lucide="link"></i>
@@ -110,7 +113,7 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     </article>
 
     <!-- Switching RRSP Providers for Better Employee Value -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="benefits hr-systems employee-experience change-management">
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="benefits hr-systems employee-experience change-management" data-format="case-study">
       <div class="flex items-start justify-between mb-6">
         <div class="icon-box text-brand-600">
           <i data-lucide="trending-up"></i>
@@ -132,7 +135,7 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     </article>
 
     <!-- Connecting a Legacy Reservation System to Modern Records -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="legacy-systems data-entry operations travel-technology">
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="legacy-systems data-entry operations travel-technology" data-format="case-study">
       <div class="flex items-start justify-between mb-6">
         <div class="icon-box text-brand-600">
           <i data-lucide="plane"></i>
@@ -154,7 +157,7 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     </article>
 
     <!-- First HRIS at a 100-Year Company -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="hris-implementation hr-systems payroll employee-experience workflow-automation">
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="hris-implementation hr-systems payroll employee-experience workflow-automation" data-format="case-study">
       <div class="flex items-start justify-between mb-6">
         <div class="icon-box text-brand-600">
           <i data-lucide="database"></i>
@@ -176,7 +179,7 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     </article>
 
     <!-- Teams Phone Mobile -->
-    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="microsoft-teams ucaa mobile-integration it-strategy">
+    <article class="tile glass rounded-2xl overflow-hidden card-hover flex flex-col bg-white p-6" data-tags="microsoft-teams ucaa mobile-integration it-strategy" data-format="case-study">
       <div class="flex items-start justify-between mb-6">
         <div class="icon-box text-brand-600">
           <i data-lucide="phone"></i>
@@ -223,16 +226,43 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
 const filterBtns = document.querySelectorAll('.filter-btn');
 const workItems = document.querySelectorAll('#work-grid .tile');
 
+let currentTagFilter = 'all';
+let currentFormatFilter = 'all';
+
+function applyFilters() {
+workItems.forEach(item => {
+  const tags = item.dataset.tags || '';
+  const format = item.dataset.format || '';
+  const tagMatch = currentTagFilter === 'all' || tags.includes(currentTagFilter);
+  const formatMatch = currentFormatFilter === 'all' || format === currentFormatFilter;
+  item.style.display = (tagMatch && formatMatch) ? 'flex' : 'none';
+});
+}
+
 filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const filter = btn.dataset.filter;
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    workItems.forEach(item => {
-      const tags = item.dataset.tags || '';
-      item.style.display = (filter === 'all' || tags.includes(filter)) ? 'flex' : 'none';
-    });
+btn.addEventListener('click', () => {
+  const filterType = btn.dataset.filterType;
+  const filterValue = btn.dataset.filter;
+
+  if (filterType === 'tag') {
+    currentTagFilter = filterValue;
+  } else if (filterType === 'format') {
+    currentFormatFilter = filterValue;
+  }
+
+  filterBtns.forEach(b => {
+    const bType = b.dataset.filterType;
+    const bValue = b.dataset.filter;
+    const isThisTypeActive = (bType === 'tag' && bValue === currentTagFilter) || (bType === 'format' && bValue === currentFormatFilter);
+    if (isThisTypeActive) {
+      b.classList.add('active');
+    } else {
+      b.classList.remove('active');
+    }
   });
+
+  applyFilters();
+});
 });
 </script>
 
