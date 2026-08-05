@@ -1,0 +1,8 @@
+# Drafts
+/drafts/
+
+# Temporary preview screenshots
+preview_homepage*.png
+
+# Local server logs
+*.log
