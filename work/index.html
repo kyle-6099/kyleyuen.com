@@ -336,9 +336,9 @@ btn.addEventListener('click', () => {
   const filterValue = btn.dataset.filter;
 
   if (filterType === 'tag') {
-    currentTagFilter = filterValue;
+    currentTagFilter = currentTagFilter === filterValue ? 'all' : filterValue;
   } else if (filterType === 'format') {
-    currentFormatFilter = filterValue;
+    currentFormatFilter = currentFormatFilter === filterValue ? 'all' : filterValue;
   }
 
   filterBtns.forEach(b => {
