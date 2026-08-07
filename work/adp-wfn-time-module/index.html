@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADP WFN Time Module: Pay Class and Supplemental Income Type — Kyle Yuen</title>
+<meta name="description" content="Implementation log for configuring the ADP Workforce Now Time module: pay classes, supplemental income types, and timecard behavior across multiple employee groups.">
+<meta property="og:title" content="ADP WFN Time Module: Pay Class and Supplemental Income Type — Kyle Yuen">
+<meta property="og:description" content="Implementation log for configuring the ADP Workforce Now Time module: pay classes, supplemental income types, and timecard behavior across multiple employee groups.">
+<meta property="og:image" content="https://kyleyuen.com/ideas/assets/issue-004-ai-tokenizes-work-should-too.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kyleyuen.com/work/adp-wfn-time-module/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+html { overflow-y: scroll; }
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+</style>
+</head>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
+<div class="content">
+
+<nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-slate-200/50 px-6 py-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-600 font-bold text-lg mono">K°</span>
+        <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+        <a href="/ideas" class="text-slate-600 hover:text-slate-900 transition-colors">Ideas</a>
+        <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-20 pb-24">
+
+      <div class="flex items-center justify-between gap-4 mb-10">
+        <a href="/work" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Work
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://kyleyuen.com/work/adp-wfn-time-module/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#084b8f] text-white rounded-lg text-sm font-medium transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Share on LinkedIn
+        </a>
+      </div>
+    <header class="mb-10">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="mono text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Implementation Log</span>
+      <span class="mono text-xs text-slate-500">HRIS / Payroll</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">ADP WFN: Time Module — Pay Class and Supplemental Income Type</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">Configuring pay classes and supplemental income types in ADP Workforce Now so timecards would flow cleanly into payroll for hourly, salaried, and unionized groups.</p>
+  </header>
+
+  <div class="prose">
+    <h2>Context</h2>
+    <p>After the HR Core module was in place, the next layer was time entry. The organization had a mix of hourly and salaried employees, multiple pay cycles, and different rules for overtime, rounding, and grace periods. Payroll also needed a way to handle income that was not regular wages — things like bonuses, allowances, and adjustments — without creating a separate manual process every pay run.</p>
+
+    <p>The Time module had to be configured so that the right hours and earnings would land on the right payroll lines automatically.</p>
+
+    <h2>What was implemented</h2>
+    <p>I configured the pay class structure and supplemental income types that bridge time entry and payroll:</p>
+    <ul>
+      <li><strong>Pay classes.</strong> I built separate pay classes for distinct employee populations: hourly and salaried, full-time and part-time, union and non-union, port drivers and highway drivers, office staff and yard staff, and employees on different pay cycles. Each pay class captured the employee type, province, pay cycle, time-entry method, overtime reset day, work-day end time, and punch-rounding rules that applied to that group. This let the system apply the correct pay rules without mixing settings across groups that should be treated differently.</li>
+      <li><strong>Punch rules.</strong> I set rounding intervals and grace periods per pay class so punches would be processed consistently. For some groups this meant exact-minute rounding; for others it meant grace windows before or after scheduled start and end times.</li>
+      <li><strong>Supplemental income types.</strong> I configured supplemental earnings codes for income that is paid outside the employee’s regular hourly or salaried rate — for example, extra piece-rate work, per-unit incentives, or other additional earnings that the time supervisor already knows about when reviewing the timecard. ADP treats these as supplemental pay, which can be taxed and reported differently than base wages. Because the supervisor is the person supplying the payroll data for these items, it makes sense for them to enter the quantity and pre-configured rate directly during timecard approval instead of sending it through a separate manual step. Administrators define the eligible supplemental items and rates in advance, so entries are consistent and flow cleanly into payroll.</li>
+      <li><strong>Payroll mapping.</strong> I linked pay classes and supplemental income types to their corresponding payroll elements, so the time module and payroll module would speak the same language.</li>
+    </ul>
+
+    <h2>My role</h2>
+    <p>I led the Time module analysis and configuration. I gathered the pay rules for each employee group, translated them into ADP pay-class requirements, documented decisions in the implementation workbook, coordinated with the ADP implementation specialist, and validated that test timecards produced the expected payroll output before sign-off.</p>
+
+    <h2>Result</h2>
+    <ul>
+      <li>Hourly and salaried employees on different pay cycles and locations were processed under the correct pay rules.</li>
+      <li>Supplemental income could be entered on the timecard and reach payroll without manual re-entry or one-off spreadsheets.</li>
+      <li>Punch rounding and grace rules were applied consistently per employee group.</li>
+      <li>Clean handoff to payroll because pay classes and earnings codes were mapped correctly from the start.</li>
+    </ul>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-slate-200">
+    <p class="text-sm text-slate-500 mb-4">Tags:</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">hris</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">payroll</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">time-and-attendance</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">systems-integration</span>
+      <span class="mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded border border-slate-200">multi-jurisdiction</span>
+    </div>
+  </div>
+
+      <div class="mt-12 flex items-center justify-between gap-4">
+        <a href="/work" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Work
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://kyleyuen.com/work/adp-wfn-time-module/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#084b8f] text-white rounded-lg text-sm font-medium transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Share on LinkedIn
+        </a>
+      </div>
+
+</article>
+
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-200 flex items-center justify-center text-brand-600 font-bold text-sm mono">K°</span>
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
