@@ -17,6 +17,7 @@ from pathlib import Path
 import random
 import re
 from html import escape
+from datetime import datetime, timezone
 
 ROOT = Path(__file__).parent.parent.resolve()
 WORK_INDEX = ROOT / "work" / "index.html"
@@ -165,6 +166,50 @@ def insert_between(haystack: str, start_marker: str, end_marker: str, content: s
     if start_idx == -1 or end_idx == -1 or end_idx <= start_idx:
         raise ValueError(f"Markers not found: {start_marker!r} or {end_marker!r}")
     return haystack[:start_idx + len(start_marker)] + "\n" + content + "\n" + haystack[end_idx:]
+
+
+
+def generate_sitemap():
+    """Regenerate sitemap.xml based on live pages."""
+    page_set = set()
+    for p in [
+        ROOT / "index.html",
+        ROOT / "about/index.html",
+        ROOT / "work/index.html",
+        ROOT / "ideas/index.html",
+        ROOT / "contact/index.html",
+    ] + list((ROOT / "work").glob("*/index.html")) + list((ROOT / "ideas").glob("*.html")):
+        rel = p.relative_to(ROOT)
+        if rel.name == "index.html":
+            parts = rel.parts[:-1]
+            url = "/" + "/".join(parts) + "/" if parts else "/"
+        else:
+            url = "/" + "/".join(rel.parts)
+        page_set.add(url)
+
+    main_urls = {"/about/", "/work/", "/ideas/", "/contact/"}
+    urls = []
+    for url in sorted(page_set):
+        if url == "/":
+            priority = "1.0"
+        elif url in main_urls:
+            priority = "0.9"
+        else:
+            priority = "0.8"
+        urls.append((url, priority))
+
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for url, priority in urls:
+        lines.append("  <url>")
+        lines.append(f"    <loc>https://kyleyuen.com{url}</loc>")
+        lines.append(f"    <lastmod>{now}</lastmod>")
+        lines.append(f"    <priority>{priority}</priority>")
+        lines.append("  </url>")
+    lines.append("</urlset>")
+
+    (ROOT / "sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"  Sitemap updated: {len(urls)} URLs")
 
 
 def main():
