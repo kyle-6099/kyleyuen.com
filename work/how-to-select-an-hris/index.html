@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Select an HRIS — Kyle Yuen</title>
+<meta name="description" content="What to look for when selecting an HRIS, especially whether the provider acts as a third-party payment service provider to the CRA.">
+<meta property="og:title" content="How to Select an HRIS — Kyle Yuen">
+<meta property="og:description" content="What to look for when selecting an HRIS, especially whether the provider acts as a third-party payment service provider to the CRA.">
+<meta property="og:image" content="https://kyleyuen.com/work/adp-wfn-hr-core/assets/og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kyleyuen.com/work/how-to-select-an-hris/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+html { overflow-y: scroll; }
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose h3 { color: #0f172a; font-weight: 700; font-size: 1.1rem; margin-top: 1.75em; margin-bottom: 0.5em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+.disclosure { border-top: 1px solid #e2e8f0; padding-top: 1.5rem; margin-top: 3rem; }
+.disclosure p { font-size: 0.875rem; color: #64748b; }
+.related-box { background: rgba(238, 242, 255, 0.6); border: 1px solid #c7d2fe; border-radius: 0.75rem; padding: 1rem; }
+.related-box:hover { background: rgba(238, 242, 255, 1); border-color: #a5b4fc; }
+.format-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #475569; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
+</style>
+</head>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
+<div class="content">
+
+<nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-slate-200/50 px-6 py-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+      <a href="/" class="flex items-center gap-2 group">
+        <img src="/assets/logo.svg" alt="Kyle Yuen" class="w-9 h-9">
+        <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/work" class="text-slate-900 font-semibold transition-colors">Work</a>
+        <a href="/ideas" class="text-slate-600 hover:text-slate-900 transition-colors">Ideas</a>
+        <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-20 pb-24">
+  <header class="mb-10">
+    <div class="mb-6 flex items-center gap-3">
+      <span class="format-label">Tool Review</span>
+      <span class="mono text-xs text-slate-500">8 min read</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">How to Select an HRIS</h1>
+    <p class="text-slate-600 text-lg leading-relaxed">A practical checklist for choosing an HRIS, with one question that often gets overlooked until payroll is already painful.</p>
+  </header>
+
+  <div class="prose">
+    <p>Most HRIS selection processes start with a feature list. Self-service onboarding, time-off tracking, reporting, integrations, mobile app. Those all matter. But the question that determines whether the system will actually run payroll smoothly is usually asked too late: does this platform act as a third-party payment service provider to the Canada Revenue Agency?</p>
+
+    <h2>Why the CRA designation matters</h2>
+    <p>A third-party payment service provider is authorized to remit source deductions — income tax, CPP, EI — directly to the CRA on behalf of the employer. Most platforms already calculate these amounts correctly. The real question is who is allowed to remit them and whether your finance team has the headcount and bank access to do that work manually.</p>
+
+    <p>If the HRIS is not the remitter, your team has to log into a business bank account, schedule payments to the CRA, and keep the dates straight. That is manageable for one pay cycle. It becomes a real problem at scale, during year-end, or when the person who handles it is unavailable.</p>
+
+    <h2>What changes when the platform is not the remitter</h2>
+    <ul>
+      <li><strong>Manual remittance work.</strong> Someone has to pay the CRA, file the T4s, and chase down any mismatches. The calculation is done; the legwork is not.</li>
+      <li><strong>Bank access becomes a bottleneck.</strong> Only certain people can send money from the company account. If the HRIS does not remit, those people become part of every payroll cycle.</li>
+      <li><strong>Additional remittances add up.</strong> Beyond federal source deductions, you may also need to remit workers' compensation premiums, employer health taxes, and provincial payroll taxes. Some platforms handle these automatically; others hand the calculated amounts back to you and expect you to file them yourself.</li>
+      <li><strong>Higher error risk.</strong> Every manual export, upload, or copy-paste between the HRIS and a government portal is a place where a decimal or a date can slip.</li>
+    </ul>
+
+    <h2>How to check before you buy</h2>
+    <p>Do not rely on the sales deck. Ask specifically whether the platform remits source deductions to the CRA on your behalf. Ask who files the T4s. Ask whether WCB, EHT, and other provincial remittances are included or calculated-only. Ask what happens if a remittance is late or wrong. The answers should be clear, not buried in a footnote.</p>
+
+    <p>Also confirm how provincial remittances work if you operate across multiple jurisdictions. Some platforms handle federal remittance but leave provinces as a separate process. That is fine if you know it going in; it is painful if you discover it during year-end.</p>
+
+    <h2>Other selection criteria I watch</h2>
+    <ul>
+      <li><strong>Core architecture: object model vs. employee record model.</strong> Some platforms treat positions, jobs, and organizations as structural objects that can sit empty. A position exists whether someone is in it or not, and every slot has a unique ID. That works well when the company already knows, or has the capacity to define, exactly what roles it takes to operate. Other platforms are employee-record-driven, prioritizing active compensation lines and the people currently on payroll. They fit organizations that hire and run with less upfront position planning.</li>
+      <li><strong>API and integrations.</strong> Does it connect to your accounting, benefits, and productivity tools, or will it become another silo? A clean API matters more than a long list of advertised integrations.</li>
+      <li><strong>Built-in data validation.</strong> Invalid SINs, missing addresses, and duplicate records should be caught before they break payroll. Look for validation at the point of entry, not after the fact.</li>
+      <li><strong>Level of customization.</strong> Some platforms are rigid and force you to adapt your process. Others let you configure pay codes, earnings types, approval workflows, and reports to match how you actually operate. Know which side of that spectrum you need before you evaluate demos.</li>
+    </ul>
+
+    <h2>My role in this kind of decision</h2>
+    <p>I help companies match an HRIS to what they actually need, not to the longest feature list. That means identifying the biggest HR and payroll issues today, anticipating what the business will need in the next few years, and choosing a system that can grow with it — all within the budget that makes sense. The goal is not the most feature-rich platform. It is the one that solves the current pain, supports the company's direction, and does not create new manual work six months after go-live.</p>
+
+    <h2>The bottom line</h2>
+    <p>The best HRIS is the one that closes the gap between how the company works today and how it wants to operate. For many Canadian employers, the biggest gap is remittance: who actually pays the CRA, WCB boards, and provincial tax authorities. Ask that before you buy. Then confirm the architecture, integration, validation, and customization match both your current issues and where the business is heading. The right platform should reduce manual work, fit your planning style, and leave room to grow without forcing a replacement in two years.</p>
+  </div>
+
+  <div class="mt-12">
+    <a href="/work/adp-wfn-hr-core/" class="related-box block transition-colors">
+      <p class="text-xs font-semibold text-brand-600 mono uppercase tracking-wide mb-1">Related Work</p>
+      <p class="text-sm text-slate-700"><strong>ADP WFN: HR Core Module</strong> — Configuring the foundational HR structure so employee records, jobs, and cost centers stay clean from day one.</p>
+    </a>
+  </div>
+
+  <div class="disclosure">
+    <p><strong>AI disclosure:</strong> This post was drafted with AI assistance and reviewed by Kyle Yuen.</p>
+  </div>
+
+      <div class="mt-12 flex items-center justify-between gap-4">
+        <a href="/work" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Work
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://kyleyuen.com/work/how-to-select-an-hris/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#084b8f] text-white rounded-lg text-sm font-medium transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Share on LinkedIn
+        </a>
+      </div>
+
+</article>
+
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <img src="/assets/logo.svg" alt="Kyle Yuen" class="w-8 h-8">
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
