@@ -18,6 +18,7 @@ import random
 import re
 from html import escape
 from datetime import datetime, timezone
+import subprocess
 
 ROOT = Path(__file__).parent.parent.resolve()
 WORK_INDEX = ROOT / "work" / "index.html"
@@ -210,6 +211,35 @@ def generate_sitemap():
 
     (ROOT / "sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"  Sitemap updated: {len(urls)} URLs")
+
+
+
+def generate_home_og():
+    """Generate OG image for homepage."""
+    from PIL import Image, ImageDraw, ImageFont
+    OG_DIR = ROOT / "assets" / "og"
+    OG_DIR.mkdir(parents=True, exist_ok=True)
+    fonts = {
+        "inter": "/root/.local/share/fonts/Inter-Black.ttf",
+        "inter_medium": "/root/.local/share/fonts/Inter-Medium.ttf",
+        "jb": "/root/.local/share/fonts/JetBrainsMono-SemiBold.ttf",
+    }
+    def get_font(name, size):
+        try:
+            return ImageFont.truetype(fonts[name], size)
+        except Exception:
+            return ImageFont.load_default()
+    colors = {"bg": (15, 23, 42), "accent": (249, 115, 22), "white": (255, 255, 255), "muted": (148, 163, 184)}
+    img = Image.new("RGB", (1200, 630), colors["bg"])
+    draw = ImageDraw.Draw(img)
+    draw.rectangle([(0, 570), (1200, 630)], fill=colors["accent"])
+    draw.text((80, 80), "K°", fill=colors["white"], font=get_font("jb", 48), anchor="lt")
+    draw.text((80, 170), "OPERATOR-CONSULTANT", fill=colors["muted"], font=get_font("inter_medium", 24), anchor="lt")
+    draw.text((80, 230), "Kyle Yuen", fill=colors["white"], font=get_font("inter", 72), anchor="lt")
+    draw.text((80, 340), "Redesigning work across people, systems, and AI.", fill=colors["white"], font=get_font("inter_medium", 28), anchor="lt")
+    draw.text((80, 600), "kyleyuen.com", fill=colors["white"], font=get_font("jb", 20), anchor="lb")
+    img.save(OG_DIR / "home.png")
+    print("  Generated homepage OG image")
 
 
 def main():
