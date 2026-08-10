@@ -105,7 +105,9 @@ body { font-family: 'Inter', sans-serif; background: #fafafa; }
     <p>A manager should approve time off based on whether the employee has enough accrued days and whether coverage works. Whether the vacation pay pool fully covers the day is a payroll question, not a manager question. The system should let the employee take the day if they have the time available, and handle any shortfall or top-up in payroll behind the scenes.</p>
 
     <h2>What a clean system looks like</h2>
-    <p>BC law only grants the days after one full year. But think about it this way: if you would let an employee take their earned ten days in the last ten working days of their first year, then they have already earned that time. It just happens to become visible on the anniversary. If the time is earned continuously, there is no logical reason to block access until day 365.</p>
+    <p>The one-year mark is a system checkpoint, not a magic earning event. If an employee can take all ten days on day 366, those days were already earned during the previous 365. Blocking access until the anniversary just hides the balance from both the employee and payroll.</p>
+
+    <p>It also creates unnecessary friction for everyone. An employee who needs a long weekend before the anniversary has to take unpaid time off, then make up the vacation later once the balance appears. Managers end up planning around unpaid leave now and paid leave later, essentially covering the same absence twice. Payroll gets a variance every time someone takes unpaid leave, which means extra validation instead of a standard paid-leave run.</p>
 
     <p>In a clean setup, the payroll engine accrues vacation pay as a percentage of wages every cycle, and the time-off module accrues days at the same pace. Each pay period sets aside the right percentage of current wages, so the balance reflects what the employee actually earns now. When an employee requests a day off, the system checks both balances: enough accrued time, and enough accrued pay to cover the day at their average earnings rate.</p>
 
