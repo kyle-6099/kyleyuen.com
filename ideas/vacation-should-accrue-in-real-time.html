@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 008 — Vacation Should Accrue in Real Time — Kyle Yuen</title>
+<meta name="description" content="British Columbia's minimum vacation standard sets two entitlements — days off and vacation pay — but paying them out each pay period is better for employees and easier for the business.">
+<meta property="og:title" content="Issue 008 — Vacation Should Accrue in Real Time — Kyle Yuen">
+<meta property="og:description" content="British Columbia's minimum vacation standard sets two entitlements — days off and vacation pay — but paying them out each pay period is better for employees and easier for the business.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kyleyuen.com/ideas/vacation-should-accrue-in-real-time.html">
+<link rel="canonical" href="https://kyleyuen.com/ideas/vacation-should-accrue-in-real-time.html">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+html { overflow-y: scroll; }
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose h3 { color: #0f172a; font-weight: 700; font-size: 1.1rem; margin-top: 1.75em; margin-bottom: 0.5em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+.prose blockquote { border-left: 4px solid #c7d2fe; padding-left: 1rem; margin: 1.5em 0; color: #475569; font-style: italic; }
+.disclosure { border-top: 1px solid #e2e8f0; padding-top: 1.5rem; margin-top: 3rem; }
+.disclosure p { font-size: 0.875rem; color: #64748b; }
+.format-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #475569; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
+</style>
+</head>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
+<div class="content">
+
+<nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-slate-200/50 px-6 py-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+      <a href="/" class="flex items-center gap-2 group">
+        <img src="/assets/logo.svg" alt="Kyle Yuen" class="w-9 h-9">
+        <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+        <a href="/ideas" class="text-slate-900 font-semibold transition-colors">Ideas</a>
+        <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-16 pb-24">
+  <header class="mb-10">
+    <img src="/ideas/assets/issue-008-vacation-should-accrue-in-real-time.png" alt="Vacation Should Accrue in Real Time" class="w-full aspect-square object-cover rounded-2xl mb-8">
+
+    <div class="mb-6 flex flex-wrap items-center gap-3">
+      <span class="format-label">Issue 008</span>
+      <span class="mono text-xs text-slate-500">6 min read</span>
+      <span class="mono text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded border border-slate-200">payroll</span>
+      <span class="mono text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded border border-slate-200">employee-experience</span>
+    </div>
+  </header>
+
+  <div class="prose">
+    <p>Most traditional employers treat the statutory minimum as the whole policy. In British Columbia, the Employment Standards Act sets two entitlements: vacation time and vacation pay. But treating the legal floor as the operating design ignores the math underneath, and that math gets expensive.</p>
+
+    <h2>What the law actually says</h2>
+    <p>In BC, employees earn two entitlements. After 12 consecutive months of employment, a regular employee is entitled to at least 2 weeks off; after 5 consecutive years, at least 3 weeks. Vacation pay is 4% of total wages for the first five years, then 6% after that. (BC ESA, Part 7, ss. 57–58, <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_96113_01" target="_blank" rel="noopener" class="text-brand-600 hover:underline">bclaws.gov.bc.ca</a>.)</p>
+
+    <p>The ESA also says the employer must ensure the employee takes the annual vacation within 12 months after completing the year of employment that earned it. (BC ESA, s. 57(2).)</p>
+
+    <h2>Where the statutory minimum creates cost and timing problems</h2>
+    <p>For a salaried employee who gets a raise, the vacation pay earned at the old wage rate may not match two weeks at the new salary. The ESA does not require the employer to top it up; some employers choose to so the employee continues to receive their current salary during vacation, while others pay out only what was accrued. Either way, the company has to decide how to handle the gap.</p>
+
+    <p>The 12-month take-it window also creates pressure. If the balance is allowed to compound for multiple years, the employer can end up paying out time that was earned at older, lower wage rates at the employee’s current salary. That is not a legal issue, but it is a cost issue.</p>
+
+    <h2>Why some employers ignore the math</h2>
+    <p>Some employers prefer flexibility over strict timing. They let employees carry balances forward, even though it costs more later. Others front-load the full vacation bank at the start of the year or on the anniversary, which creates the same inflation risk and makes coverage harder to plan.</p>
+
+    <p>The cleanest answer is not to fight the timing rule. It is to stop pretending vacation is earned once a year and start accruing it each payroll.</p>
+
+    <h2>How the math changes by employment type</h2>
+    <p>For a salaried employee, vacation pay is usually embedded in regular payroll. The accrual is still happening in the background, even if it is not visible on the payslip. The real question is whether the balance shown to the employee matches the actual dollars available.</p>
+
+    <p>For part-time or hourly employees, the math is more visible. A part-time worker paid $500 in a pay period accrues vacation pay at 4%, or $20, each pay run. If they take a vacation day later, the pay they receive for that day should reflect their average earnings, not a flat guess.</p>
+
+    <h2>The case for real-time accrual</h2>
+    <p>BC law only grants the days after one full year. But think about it this way: if you would let an employee take their earned ten days in the last ten working days of their first year, then they have already earned that time. It just happens to become visible on the anniversary. If the time is earned continuously, there is no logical reason to block access until day 365.</p>
+
+    <p>Accruing days and dollars on every payroll fixes the inflation problem too. Each pay period sets aside the right percentage of current wages. The balance stays current with the employee’s actual earnings. There is no big catch-up top-up later.</p>
+
+    <h2>What a clean system looks like</h2>
+    <p>In a clean setup, the payroll engine accrues vacation pay as a percentage of wages every cycle. The time-off module accrues days at the same pace. When an employee requests a day off, the system checks both balances: do they have enough accrued time, and is there enough accrued pay to cover the day at their average earnings rate?</p>
+
+    <p>If the answer is yes, the leave is approved and payroll pays it automatically. If the answer is no, the request is either blocked or flagged. There is no spreadsheet on the side, no manager guessing at balances, and no finance team reconciling liabilities after the fact.</p>
+
+    <h2>The bottom line</h2>
+    <p>Vacation is not a reward that drops after twelve months. It is compensation that is earned continuously. The law already separates days from dollars. A well-run system should accrue both in real time, let employees access leave as they earn it, and let the platform handle the math. That reduces cost inflation for the company and gives employees a benefit that actually matches how they work.</p>
+  </div>
+
+  <div class="disclosure">
+    <p><strong>AI disclosure:</strong> This post was drafted with AI assistance and reviewed by Kyle Yuen.</p>
+  </div>
+
+  <div class="mt-12 flex items-center justify-between gap-4">
+    <a href="/ideas" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Ideas
+    </a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://kyleyuen.com/ideas/vacation-should-accrue-in-real-time.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#084b8f] text-white rounded-lg text-sm font-medium transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Share on LinkedIn
+    </a>
+  </div>
+
+</article>
+
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <img src="/assets/logo.svg" alt="Kyle Yuen" class="w-8 h-8">
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
