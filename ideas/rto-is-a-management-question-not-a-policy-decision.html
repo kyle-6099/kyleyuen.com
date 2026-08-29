@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 012 — RTO Is a Management Question, Not a Policy Decision — Kyle Yuen</title>
+<meta name="description" content="Recent federal and provincial rulings in Canada show that blanket return-to-office mandates are landing employers in legal trouble. The real issue is whether management has asked why the work needs to be done in an office.">
+<meta property="og:title" content="Issue 012 — RTO Is a Management Question, Not a Policy Decision — Kyle Yuen">
+<meta property="og:description" content="Recent federal and provincial rulings in Canada show that blanket return-to-office mandates are landing employers in legal trouble. The real issue is whether management has asked why the work needs to be done in an office.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kyleyuen.com/ideas/rto-is-a-management-question-not-a-policy-decision.html">
+<link rel="canonical" href="https://kyleyuen.com/ideas/rto-is-a-management-question-not-a-policy-decision.html">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 500: '#1e3a8a', 600: '#172554' },
+        accent: { 400: '#6366f1', 500: '#4f46e5' }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+html { overflow-y: scroll; }
+body { font-family: 'Inter', sans-serif; background: #fafafa; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 20% 10%, rgba(99,102,241,0.05) 0%, transparent 30%), radial-gradient(circle at 80% 85%, rgba(30,58,138,0.03) 0%, transparent 35%); }
+.ambient::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(203,213,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(203,213,225,0.3) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 65%); }
+.content { position: relative; z-index: 1; }
+.glass { background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); border: 1px solid rgba(203, 213, 225, 0.7); }
+.prose p { margin-bottom: 1.25em; line-height: 1.75; color: #475569; }
+.prose h2 { color: #0f172a; font-weight: 700; font-size: 1.25rem; margin-top: 2em; margin-bottom: 0.75em; }
+.prose h3 { color: #0f172a; font-weight: 700; font-size: 1.1rem; margin-top: 1.75em; margin-bottom: 0.5em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; color: #475569; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: #1e293b; }
+.prose blockquote { border-left: 4px solid #c7d2fe; padding-left: 1rem; margin: 1.5em 0; color: #475569; font-style: italic; }
+.disclosure { border-top: 1px solid #e2e8f0; padding-top: 1.5rem; margin-top: 3rem; }
+.disclosure p { font-size: 0.875rem; color: #64748b; }
+.format-label { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #475569; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
+.note-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem 1.25rem; margin: 1.5em 0; }
+.note-box p { margin-bottom: 0; color: #475569; }
+.note-box strong { color: #0f172a; }
+</style>
+</head>
+<body class="text-slate-700 antialiased">
+<div class="ambient"></div>
+<div class="content">
+
+<nav class="sticky top-0 z-50 bg-[#fafafa]/80 backdrop-blur-md border-b border-slate-200/50 px-6 py-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between shadow-sm">
+      <a href="/" class="flex items-center gap-2 group">
+        <img src="/assets/logo.svg" alt="Kyle Yuen" class="w-9 h-9">
+        <span class="font-semibold text-slate-900 tracking-tight">Kyle Yuen</span>
+      </a>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/work" class="text-slate-600 hover:text-slate-900 transition-colors">Work</a>
+        <a href="/ideas" class="text-slate-900 font-semibold transition-colors">Ideas</a>
+        <a href="/about" class="text-slate-600 hover:text-slate-900 transition-colors">About</a>
+        <a href="/contact" class="px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-all shadow-md shadow-brand-500/10">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-6 pt-16 pb-24">
+  <header class="mb-10">
+    <img src="/ideas/assets/issue-012-rto-is-a-management-question-not-a-policy-decision.png" alt="RTO Is a Management Question, Not a Policy Decision" class="w-full aspect-square object-cover rounded-2xl mb-8">
+
+    <div class="mb-6 flex flex-wrap items-center gap-3">
+      <span class="format-label">Issue 012</span>
+      <span class="mono text-xs text-slate-500">7 min read</span>
+      <span class="mono text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded border border-slate-200">remote-work</span>
+      <span class="mono text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded border border-slate-200">employment-law</span>
+      <span class="mono text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded border border-slate-200">management</span>
+    </div>
+  </header>
+
+  <div class="prose">
+    <p>In the past year, Canadian employers have learned that a blanket return-to-office mandate is not just unpopular. It can be unlawful. Recent rulings at the federal level and in British Columbia show that courts and tribunals are willing to penalize employers who force workers back without a clear justification, without accommodation, or without recognizing that remote work has become a binding part of the employment relationship.</p>
+
+    <p>The legal message is important, but it is secondary. The real question is why so many organizations are defaulting to office-first policies in the first place.</p>
+
+    <h2>What the recent rulings say</h2>
+
+    <h3>Federal: accommodation cannot be a headset</h3>
+    <p>In June 2026, the Federal Public Sector Labour Relations and Employment Board ruled that Innovation, Science and Economic Development Canada had acted "recklessly" by forcing an employee with post-traumatic stress disorder back to the office. The employer offered a noise-cancelling headset instead of seriously considering remote work as an accommodation. The board awarded $28,000 in damages and two years of lost wages. The adjudicator, Christopher Rootham, wrote that "making employees miserable is not the purpose of the duty to accommodate." (Sources: <a href="https://www.hrreporter.com/chrr-plus/employment-law/28000-and-2-years-wages-ottawa-must-pay-after-reckless-rto-mandate-for-worker/394788" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Canadian HR Reporter</a>; <a href="https://www.hcamag.com/ca/specialization/employment-law/federal-labour-board-orders-ottawa-to-pay-28000-over-botched-rto-accommodation/586024" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Human Resources Director</a>.)</p>
+
+    <p>The Professional Institute of the Public Service of Canada, which represented the employee, said the case shows that a "one-size-fits-all approach to RTO doesn't work and doesn't make sense." That point is worth remembering. The employer did not lose because it preferred the office. It lost because it treated a disability accommodation as an inconvenience to be managed with office supplies.</p>
+
+    <h3>British Columbia: remote work can become a contract term</h3>
+    <p>In May 2026, the British Columbia Court of Appeal decided <em>Cressey Construction Corporation v. Parolin</em>, 2026 BCCA 199. The court confirmed that a remote work arrangement, once established and relied upon, can become a binding term of employment. When Cressey Construction required a long-time remote employee to return to the office full-time, the court treated it as a constructive dismissal. (Sources: <a href="https://hicksmorley.com/2026/05/25/british-columbia-court-of-appeal-confirms-remote-work-arrangements-may-constitute-binding-contractual-terms/" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Hicks Morley</a>; <a href="https://www.mccarthy.ca/en/insights/blogs/canadian-employer-advisor/workplace-arrangements-bc-court-of-appeal-affirms-constructive-dismissal-claim-by-remote-worker-required-to-return-to-the-office" target="_blank" rel="noopener" class="text-brand-600 hover:underline">McCarthy Tétrault Employer Advisor</a>.)</p>
+
+    <p>The BC decision does not make remote work a universal right. It does mean that employers who allowed remote work during the pandemic, made it part of how the job was performed, and gave employees a reasonable expectation that it would continue cannot suddenly revoke it without consequence. A policy memo is not enough to override a working condition that became part of the employment relationship.</p>
+
+    <h3>Ontario: the essential-term question</h3>
+    <p>Ontario arbitrators have also been wrestling with whether remote or hybrid work has become an essential term of employment. Recent decisions suggest that the answer depends on the specific language of the contract, the past practice, and how central the arrangement is to the employee's ability to do the job. The Ontario Bar Association summarized the trend in a recent article, noting that employers should not assume a written telework clause covers every form of remote or hybrid arrangement, and that employees may have grounds to push back when a unilateral RTO order changes a fundamental term of their employment. (Source: <a href="https://www.oba.org/remote-work-as-an-essential-term-of-employment-lessons-from-recent-ontario-decisions/" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Ontario Bar Association</a>.)</p>
+
+    <h2>The common thread</h2>
+    <p>All three of these developments point in the same direction. Canadian tribunals and courts are asking employers to explain why the office is necessary. A general preference for in-person work is not enough. A belief that employees are more productive under supervision is not enough. A lease payment is not enough. The law is asking for a justification tied to the specific job, the specific employee, and the specific terms of employment.</p>
+
+    <p>This is where management has to be honest with itself. Most RTO mandates are not really about the work. They are about control, visibility, culture, sunk costs, or a leadership team that never accepted remote work as legitimate. When those motivations drive policy, the policy becomes legally fragile.</p>
+
+    <h2>What employers are actually trying to solve</h2>
+    <p>If an employer is serious about RTO, it should be able to name the problem the office is supposed to solve. The answer usually falls into one of a few categories:</p>
+
+    <ul>
+      <li><strong>Better collaboration.</strong> Some work genuinely benefits from spontaneous interaction. But most collaboration is scheduled. If the office is only useful on meeting days, a full-week mandate is overkill.</li>
+      <li><strong>Company culture.</strong> Culture is real, but it is not created by physical presence alone. Forcing people into an office with no purpose other than presence creates resentment, not culture.</li>
+      <li><strong>Productivity and accountability.</strong> If the concern is that people are not working, the issue is management and measurement, not location. Time in a seat is a poor proxy for output.</li>
+      <li><strong>Training and onboarding.</strong> Junior employees and new hires often benefit from proximity. That is a targeted reason for in-office days, not a reason to bring everyone back.</li>
+      <li><strong>Real estate and sunk costs.</strong> A lease is a business decision. It is not a reason to make employees commute.</li>
+    </ul>
+
+    <p>The test is simple: if the work was being performed well remotely, why change it? If the answer is "we believe people work better in the office," the next question should be: what evidence supports that belief for this role? If the answer is "we want people visible," the organization is optimizing for control, not results.</p>
+
+    <h2>What a defensible RTO policy looks like</h2>
+    <p>Defensible RTO policies share a few traits. They are role-based, not organization-wide. They explain which functions need in-person time and why. They allow for individualized accommodation. They document the business rationale. And they are applied consistently within roles, not according to manager whim or favour.</p>
+
+    <p>An employer that can say "these three teams need to be in the office on Tuesdays and Thursdays because their work requires hands-on collaboration, and everyone else can work flexibly" has a much stronger position than one that says "all employees must be in the office five days a week because that is our culture." The first is a management decision tied to work requirements. The second is a preference dressed up as policy.</p>
+
+    <h2>RTO is also a compensation decision</h2>
+    <p>Employers have the right to mandate a return to the office or to hire new employees on a 100 percent on-site basis. That right is not really in question. The more useful question is what that choice costs.</p>
+
+    <p>Flexibility has become part of total compensation. A role that allows remote work two or three days a week is worth more to many employees than the same role with a five-day office requirement, even if the salary is identical. Commute time, childcare logistics, concentration, and personal circumstances all factor into the value employees place on where they work. When an employer removes flexibility, it is effectively reducing compensation without changing the pay stub.</p>
+
+    <p>Employees respond to that the same way they respond to a pay cut. They leave for a more flexible employer, they negotiate harder on salary, or they disengage. The market has made this very clear in industries where remote-capable talent has options. A strict RTO policy does not just test legal boundaries; it tests whether the employer can still attract and keep the people it needs.</p>
+
+    <p>This is why honesty matters. If an employer genuinely believes the work is better done in person, it should make that case by role and accept that some candidates and employees will choose differently. If the real reason is culture, visibility, or real estate, the employer should treat RTO as a retention and compensation trade-off, not as a neutral policy announcement.</p>
+
+    <h2>The bottom line</h2>
+    <p>The law is catching up with what many workers already knew: a blanket RTO mandate is a risky way to run a workplace. The federal and provincial rulings do not ban return-to-office policies. They require employers to justify them, accommodate individual needs, and respect the employment terms they created during the pandemic.</p>
+
+    <p>But even where an RTO policy is legally sound, it may still be a bad decision. Before writing another RTO memo, leadership should answer one question honestly: do we want the work performed, or do we want time in the office more? If the answer is not the work, the policy is going to keep losing in court and in retention.</p>
+  </div>
+
+  <div class="disclosure">
+    <p><strong>AI disclosure:</strong> This post was drafted with AI assistance and reviewed by Kyle Yuen.</p>
+  </div>
+
+  <div class="mt-12 flex items-center justify-between gap-4">
+    <a href="/ideas" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Ideas
+    </a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://kyleyuen.com/ideas/rto-is-a-management-question-not-a-policy-decision.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] hover:bg-[#084b8f] text-white rounded-lg text-sm font-medium transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Share on LinkedIn
+    </a>
+  </div>
+
+</article>
+
+<footer class="border-t border-slate-200 py-10">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <img src="/assets/logo.svg" alt="Kyle Yuen" class="w-8 h-8">
+      <span class="font-medium text-slate-900">Kyle Yuen</span>
+    </div>
+    <div class="flex items-center gap-8 text-sm text-slate-500">
+      <a href="https://linkedin.com/in/kyleyuen" target="_blank" rel="noopener" class="hover:text-brand-600 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
